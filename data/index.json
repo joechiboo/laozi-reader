@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-14",
-  "total": 54,
+  "total": 64,
   "chapters": [
     {
       "chapter": 1,
@@ -99,6 +99,14 @@
       "notes": 5
     },
     {
+      "chapter": 13,
+      "part": "道經",
+      "gist": "寵辱若驚，貴大患若身；貴以身為天下，若可寄天下",
+      "status": "draft",
+      "segments": 4,
+      "notes": 4
+    },
+    {
       "chapter": 14,
       "part": "道經",
       "gist": "夷希微混而為一；無狀之狀，執古之道以御今之有",
@@ -107,12 +115,28 @@
       "notes": 6
     },
     {
+      "chapter": 15,
+      "part": "道經",
+      "gist": "古之善為士者七喻；濁以靜之徐清，保此道者不欲盈",
+      "status": "draft",
+      "segments": 5,
+      "notes": 5
+    },
+    {
       "chapter": 16,
       "part": "道經",
       "gist": "致虛守靜，觀萬物之復；歸根曰靜，知常曰明",
       "status": "draft",
       "segments": 5,
       "notes": 6
+    },
+    {
+      "chapter": 17,
+      "part": "道經",
+      "gist": "治理的四等：下知有之、親譽之、畏之、侮之；功成而百姓謂我自然",
+      "status": "draft",
+      "segments": 3,
+      "notes": 5
     },
     {
       "chapter": 18,
@@ -179,6 +203,22 @@
       "notes": 6
     },
     {
+      "chapter": 26,
+      "part": "道經",
+      "gist": "重為輕根，靜為躁君；輕則失本，躁則失君",
+      "status": "draft",
+      "segments": 4,
+      "notes": 4
+    },
+    {
+      "chapter": 27,
+      "part": "道經",
+      "gist": "善行無轍跡；聖人常善救人故無棄人；善人者不善人之師",
+      "status": "draft",
+      "segments": 4,
+      "notes": 5
+    },
+    {
       "chapter": 28,
       "part": "道經",
       "gist": "知雄守雌、知白守黑、知榮守辱；復歸於嬰兒、無極、樸",
@@ -195,6 +235,22 @@
       "notes": 6
     },
     {
+      "chapter": 30,
+      "part": "道經",
+      "gist": "不以兵強天下；果而勿強；物壯則老，是謂不道",
+      "status": "draft",
+      "segments": 5,
+      "notes": 5
+    },
+    {
+      "chapter": 31,
+      "part": "道經",
+      "gist": "兵者不祥之器，不得已而用之；戰勝以喪禮處之",
+      "status": "draft",
+      "segments": 5,
+      "notes": 5
+    },
+    {
       "chapter": 32,
       "part": "道經",
       "gist": "道常無名，樸雖小天下莫能臣；始制有名，知止不殆",
@@ -206,6 +262,14 @@
       "chapter": 33,
       "part": "道經",
       "gist": "自知者明，自勝者強，知足者富；死而不亡者壽",
+      "status": "draft",
+      "segments": 4,
+      "notes": 5
+    },
+    {
+      "chapter": 34,
+      "part": "道經",
+      "gist": "大道氾兮；衣養萬物而不為主，可名於小，亦可名為大",
       "status": "draft",
       "segments": 4,
       "notes": 5
@@ -307,6 +371,14 @@
       "notes": 6
     },
     {
+      "chapter": 49,
+      "part": "德經",
+      "gist": "聖人無常心，以百姓心為心；不善者吾亦善之",
+      "status": "draft",
+      "segments": 4,
+      "notes": 5
+    },
+    {
       "chapter": 51,
       "part": "德經",
       "gist": "道生德畜，莫之命而常自然；生而不有，是謂玄德",
@@ -387,6 +459,14 @@
       "notes": 6
     },
     {
+      "chapter": 65,
+      "part": "德經",
+      "gist": "非以明民，將以愚之；以智治國國之賊；玄德與物反，乃至大順",
+      "status": "draft",
+      "segments": 5,
+      "notes": 5
+    },
+    {
       "chapter": 66,
       "part": "德經",
       "gist": "江海善下所以為百谷王；不爭，故天下莫能與之爭",
@@ -438,7 +518,7 @@
   "keywords": [
     {
       "term": "道",
-      "chapters": 26,
+      "chapters": 31,
       "refs": [
         {
           "chapter": 1,
@@ -474,6 +554,13 @@
             "14.6"
           ],
           "sense": "自古即有、可執以御今"
+        },
+        {
+          "chapter": 15,
+          "segments": [
+            "15.5"
+          ],
+          "sense": "作為修持的對象"
         },
         {
           "chapter": 16,
@@ -523,12 +610,34 @@
           "sense": "只是勉強取的稱呼，見 n2"
         },
         {
+          "chapter": 30,
+          "segments": [
+            "30.1",
+            "30.5"
+          ],
+          "sense": "以兵事為對照"
+        },
+        {
+          "chapter": 31,
+          "segments": [
+            "31.1"
+          ],
+          "sense": "有道者不處兵"
+        },
+        {
           "chapter": 32,
           "segments": [
             "32.1",
             "32.5"
           ],
           "sense": "以無名、樸為狀"
+        },
+        {
+          "chapter": 34,
+          "segments": [
+            "34.1"
+          ],
+          "sense": "氾而無所不在"
         },
         {
           "chapter": 37,
@@ -613,6 +722,13 @@
           "sense": "治理所依循的道"
         },
         {
+          "chapter": 65,
+          "segments": [
+            "65.1"
+          ],
+          "sense": "作為治理者所行"
+        },
+        {
           "chapter": 67,
           "segments": [
             "67.1"
@@ -639,12 +755,18 @@
     },
     {
       "term": "天下",
-      "chapters": 24,
+      "chapters": 29,
       "refs": [
         {
           "chapter": 2,
           "segments": [
             "2.1"
+          ]
+        },
+        {
+          "chapter": 13,
+          "segments": [
+            "13.4"
           ]
         },
         {
@@ -661,6 +783,12 @@
           ]
         },
         {
+          "chapter": 26,
+          "segments": [
+            "26.3"
+          ]
+        },
+        {
           "chapter": 28,
           "segments": [
             "28.1",
@@ -673,6 +801,18 @@
           "segments": [
             "29.1",
             "29.2"
+          ]
+        },
+        {
+          "chapter": 30,
+          "segments": [
+            "30.1"
+          ]
+        },
+        {
+          "chapter": 31,
+          "segments": [
+            "31.3"
           ]
         },
         {
@@ -729,6 +869,12 @@
           "chapter": 48,
           "segments": [
             "48.4"
+          ]
+        },
+        {
+          "chapter": 49,
+          "segments": [
+            "49.4"
           ]
         },
         {
@@ -803,7 +949,7 @@
     },
     {
       "term": "聖人",
-      "chapters": 18,
+      "chapters": 21,
       "refs": [
         {
           "chapter": 2,
@@ -842,6 +988,18 @@
           ]
         },
         {
+          "chapter": 26,
+          "segments": [
+            "26.2"
+          ]
+        },
+        {
+          "chapter": 27,
+          "segments": [
+            "27.2"
+          ]
+        },
+        {
           "chapter": 28,
           "segments": [
             "28.4"
@@ -857,6 +1015,13 @@
           "chapter": 47,
           "segments": [
             "47.3"
+          ]
+        },
+        {
+          "chapter": 49,
+          "segments": [
+            "49.1",
+            "49.4"
           ]
         },
         {
@@ -921,7 +1086,7 @@
     },
     {
       "term": "知",
-      "chapters": 16,
+      "chapters": 18,
       "refs": [
         {
           "chapter": 3,
@@ -948,6 +1113,12 @@
           "segments": [
             "16.4",
             "16.5"
+          ]
+        },
+        {
+          "chapter": 17,
+          "segments": [
+            "17.1"
           ]
         },
         {
@@ -1023,6 +1194,12 @@
           ]
         },
         {
+          "chapter": 65,
+          "segments": [
+            "65.4"
+          ]
+        },
+        {
           "chapter": 81,
           "segments": [
             "81.3"
@@ -1032,7 +1209,7 @@
     },
     {
       "term": "萬物",
-      "chapters": 14,
+      "chapters": 15,
       "refs": [
         {
           "chapter": 1,
@@ -1074,6 +1251,13 @@
           "chapter": 32,
           "segments": [
             "32.2"
+          ]
+        },
+        {
+          "chapter": 34,
+          "segments": [
+            "34.2",
+            "34.3"
           ]
         },
         {
@@ -1123,8 +1307,192 @@
       ]
     },
     {
+      "term": "常",
+      "chapters": 14,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5"
+          ]
+        },
+        {
+          "chapter": 3,
+          "segments": [
+            "3.3"
+          ]
+        },
+        {
+          "chapter": 16,
+          "segments": [
+            "16.4",
+            "16.5"
+          ]
+        },
+        {
+          "chapter": 27,
+          "segments": [
+            "27.2"
+          ]
+        },
+        {
+          "chapter": 28,
+          "segments": [
+            "28.1",
+            "28.2",
+            "28.3"
+          ]
+        },
+        {
+          "chapter": 32,
+          "segments": [
+            "32.1"
+          ]
+        },
+        {
+          "chapter": 34,
+          "segments": [
+            "34.3"
+          ]
+        },
+        {
+          "chapter": 37,
+          "segments": [
+            "37.1"
+          ]
+        },
+        {
+          "chapter": 46,
+          "segments": [
+            "46.3"
+          ]
+        },
+        {
+          "chapter": 49,
+          "segments": [
+            "49.1"
+          ]
+        },
+        {
+          "chapter": 51,
+          "segments": [
+            "51.3"
+          ]
+        },
+        {
+          "chapter": 52,
+          "segments": [
+            "52.5"
+          ]
+        },
+        {
+          "chapter": 64,
+          "segments": [
+            "64.5"
+          ]
+        },
+        {
+          "chapter": 65,
+          "segments": [
+            "65.4"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "善",
+      "chapters": 13,
+      "refs": [
+        {
+          "chapter": 2,
+          "segments": [
+            "2.1"
+          ]
+        },
+        {
+          "chapter": 8,
+          "segments": [
+            "8.1",
+            "8.2",
+            "8.3"
+          ]
+        },
+        {
+          "chapter": 15,
+          "segments": [
+            "15.1"
+          ]
+        },
+        {
+          "chapter": 20,
+          "segments": [
+            "20.1"
+          ]
+        },
+        {
+          "chapter": 27,
+          "segments": [
+            "27.1",
+            "27.2",
+            "27.3"
+          ]
+        },
+        {
+          "chapter": 30,
+          "segments": [
+            "30.3"
+          ]
+        },
+        {
+          "chapter": 41,
+          "segments": [
+            "41.5"
+          ]
+        },
+        {
+          "chapter": 49,
+          "segments": [
+            "49.2"
+          ]
+        },
+        {
+          "chapter": 54,
+          "segments": [
+            "54.1"
+          ]
+        },
+        {
+          "chapter": 58,
+          "segments": [
+            "58.3"
+          ]
+        },
+        {
+          "chapter": 65,
+          "segments": [
+            "65.1"
+          ]
+        },
+        {
+          "chapter": 66,
+          "segments": [
+            "66.1"
+          ]
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.2"
+          ]
+        }
+      ]
+    },
+    {
       "term": "德",
-      "chapters": 11,
+      "chapters": 13,
       "refs": [
         {
           "chapter": 10,
@@ -1168,6 +1536,13 @@
           ]
         },
         {
+          "chapter": 49,
+          "segments": [
+            "49.2",
+            "49.3"
+          ]
+        },
+        {
           "chapter": 51,
           "segments": [
             "51.1",
@@ -1200,84 +1575,19 @@
           "segments": [
             "63.2"
           ]
-        }
-      ]
-    },
-    {
-      "term": "常",
-      "chapters": 10,
-      "refs": [
-        {
-          "chapter": 1,
-          "segments": [
-            "1.1",
-            "1.2",
-            "1.4",
-            "1.5"
-          ]
         },
         {
-          "chapter": 3,
+          "chapter": 65,
           "segments": [
-            "3.3"
-          ]
-        },
-        {
-          "chapter": 16,
-          "segments": [
-            "16.4",
-            "16.5"
-          ]
-        },
-        {
-          "chapter": 28,
-          "segments": [
-            "28.1",
-            "28.2",
-            "28.3"
-          ]
-        },
-        {
-          "chapter": 32,
-          "segments": [
-            "32.1"
-          ]
-        },
-        {
-          "chapter": 37,
-          "segments": [
-            "37.1"
-          ]
-        },
-        {
-          "chapter": 46,
-          "segments": [
-            "46.3"
-          ]
-        },
-        {
-          "chapter": 51,
-          "segments": [
-            "51.3"
-          ]
-        },
-        {
-          "chapter": 52,
-          "segments": [
-            "52.5"
-          ]
-        },
-        {
-          "chapter": 64,
-          "segments": [
-            "64.5"
+            "65.4",
+            "65.5"
           ]
         }
       ]
     },
     {
       "term": "有",
-      "chapters": 10,
+      "chapters": 12,
       "refs": [
         {
           "chapter": 1,
@@ -1302,9 +1612,21 @@
           ]
         },
         {
+          "chapter": 13,
+          "segments": [
+            "13.3"
+          ]
+        },
+        {
           "chapter": 14,
           "segments": [
             "14.6"
+          ]
+        },
+        {
+          "chapter": 17,
+          "segments": [
+            "17.1"
           ]
         },
         {
@@ -1420,7 +1742,7 @@
     },
     {
       "term": "名",
-      "chapters": 8,
+      "chapters": 9,
       "refs": [
         {
           "chapter": 1,
@@ -1456,6 +1778,13 @@
           ]
         },
         {
+          "chapter": 34,
+          "segments": [
+            "34.2",
+            "34.3"
+          ]
+        },
+        {
           "chapter": 37,
           "segments": [
             "37.3",
@@ -1477,64 +1806,8 @@
       ]
     },
     {
-      "term": "善",
-      "chapters": 8,
-      "refs": [
-        {
-          "chapter": 2,
-          "segments": [
-            "2.1"
-          ]
-        },
-        {
-          "chapter": 8,
-          "segments": [
-            "8.1",
-            "8.2",
-            "8.3"
-          ]
-        },
-        {
-          "chapter": 20,
-          "segments": [
-            "20.1"
-          ]
-        },
-        {
-          "chapter": 41,
-          "segments": [
-            "41.5"
-          ]
-        },
-        {
-          "chapter": 54,
-          "segments": [
-            "54.1"
-          ]
-        },
-        {
-          "chapter": 58,
-          "segments": [
-            "58.3"
-          ]
-        },
-        {
-          "chapter": 66,
-          "segments": [
-            "66.1"
-          ]
-        },
-        {
-          "chapter": 81,
-          "segments": [
-            "81.2"
-          ]
-        }
-      ]
-    },
-    {
       "term": "強",
-      "chapters": 8,
+      "chapters": 9,
       "refs": [
         {
           "chapter": 3,
@@ -1547,6 +1820,14 @@
           "chapter": 29,
           "segments": [
             "29.4"
+          ]
+        },
+        {
+          "chapter": 30,
+          "segments": [
+            "30.1",
+            "30.3",
+            "30.4"
           ]
         },
         {
@@ -1591,6 +1872,61 @@
           "segments": [
             "78.1",
             "78.2"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "信",
+      "chapters": 8,
+      "refs": [
+        {
+          "chapter": 8,
+          "segments": [
+            "8.3"
+          ]
+        },
+        {
+          "chapter": 17,
+          "segments": [
+            "17.2"
+          ]
+        },
+        {
+          "chapter": 21,
+          "segments": [
+            "21.4"
+          ],
+          "sense": "此處是憑據、驗證，非誠信"
+        },
+        {
+          "chapter": 23,
+          "segments": [
+            "23.5"
+          ]
+        },
+        {
+          "chapter": 38,
+          "segments": [
+            "38.6"
+          ]
+        },
+        {
+          "chapter": 49,
+          "segments": [
+            "49.3"
+          ]
+        },
+        {
+          "chapter": 63,
+          "segments": [
+            "63.5"
+          ]
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.1"
           ]
         }
       ]
@@ -1645,51 +1981,8 @@
       ]
     },
     {
-      "term": "信",
-      "chapters": 6,
-      "refs": [
-        {
-          "chapter": 8,
-          "segments": [
-            "8.3"
-          ]
-        },
-        {
-          "chapter": 21,
-          "segments": [
-            "21.4"
-          ],
-          "sense": "此處是憑據、驗證，非誠信"
-        },
-        {
-          "chapter": 23,
-          "segments": [
-            "23.5"
-          ]
-        },
-        {
-          "chapter": 38,
-          "segments": [
-            "38.6"
-          ]
-        },
-        {
-          "chapter": 63,
-          "segments": [
-            "63.5"
-          ]
-        },
-        {
-          "chapter": 81,
-          "segments": [
-            "81.1"
-          ]
-        }
-      ]
-    },
-    {
       "term": "無",
-      "chapters": 6,
+      "chapters": 7,
       "refs": [
         {
           "chapter": 1,
@@ -1714,6 +2007,12 @@
           ]
         },
         {
+          "chapter": 13,
+          "segments": [
+            "13.3"
+          ]
+        },
+        {
           "chapter": 14,
           "segments": [
             "14.3",
@@ -1730,6 +2029,57 @@
           "chapter": 43,
           "segments": [
             "43.2"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "玄",
+      "chapters": 7,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.6",
+            "1.7"
+          ]
+        },
+        {
+          "chapter": 6,
+          "segments": [
+            "6.1",
+            "6.2"
+          ]
+        },
+        {
+          "chapter": 10,
+          "segments": [
+            "10.7"
+          ]
+        },
+        {
+          "chapter": 15,
+          "segments": [
+            "15.1"
+          ]
+        },
+        {
+          "chapter": 51,
+          "segments": [
+            "51.5"
+          ]
+        },
+        {
+          "chapter": 56,
+          "segments": [
+            "56.2"
+          ]
+        },
+        {
+          "chapter": 65,
+          "segments": [
+            "65.4",
+            "65.5"
           ]
         }
       ]
@@ -1849,6 +2199,44 @@
       ]
     },
     {
+      "term": "樸",
+      "chapters": 5,
+      "refs": [
+        {
+          "chapter": 15,
+          "segments": [
+            "15.3"
+          ]
+        },
+        {
+          "chapter": 19,
+          "segments": [
+            "19.4"
+          ]
+        },
+        {
+          "chapter": 28,
+          "segments": [
+            "28.3",
+            "28.4"
+          ]
+        },
+        {
+          "chapter": 32,
+          "segments": [
+            "32.1"
+          ]
+        },
+        {
+          "chapter": 37,
+          "segments": [
+            "37.3",
+            "37.4"
+          ]
+        }
+      ]
+    },
+    {
       "term": "母",
       "chapters": 5,
       "refs": [
@@ -1886,39 +2274,37 @@
       ]
     },
     {
-      "term": "玄",
+      "term": "自然",
       "chapters": 5,
       "refs": [
         {
-          "chapter": 1,
+          "chapter": 17,
           "segments": [
-            "1.6",
-            "1.7"
+            "17.3"
           ]
         },
         {
-          "chapter": 6,
+          "chapter": 23,
           "segments": [
-            "6.1",
-            "6.2"
+            "23.1"
           ]
         },
         {
-          "chapter": 10,
+          "chapter": 25,
           "segments": [
-            "10.7"
+            "25.6"
           ]
         },
         {
           "chapter": 51,
           "segments": [
-            "51.5"
+            "51.3"
           ]
         },
         {
-          "chapter": 56,
+          "chapter": 64,
           "segments": [
-            "56.2"
+            "64.6"
           ]
         }
       ]
@@ -1954,63 +2340,25 @@
       ]
     },
     {
-      "term": "樸",
-      "chapters": 4,
+      "term": "反",
+      "chapters": 3,
       "refs": [
-        {
-          "chapter": 19,
-          "segments": [
-            "19.4"
-          ]
-        },
-        {
-          "chapter": 28,
-          "segments": [
-            "28.3",
-            "28.4"
-          ]
-        },
-        {
-          "chapter": 32,
-          "segments": [
-            "32.1"
-          ]
-        },
-        {
-          "chapter": 37,
-          "segments": [
-            "37.3",
-            "37.4"
-          ]
-        }
-      ]
-    },
-    {
-      "term": "自然",
-      "chapters": 4,
-      "refs": [
-        {
-          "chapter": 23,
-          "segments": [
-            "23.1"
-          ]
-        },
         {
           "chapter": 25,
           "segments": [
-            "25.6"
+            "25.4"
           ]
         },
         {
-          "chapter": 51,
+          "chapter": 40,
           "segments": [
-            "51.3"
+            "40.1"
           ]
         },
         {
-          "chapter": 64,
+          "chapter": 65,
           "segments": [
-            "64.6"
+            "65.5"
           ]
         }
       ]
@@ -2067,19 +2415,20 @@
       ]
     },
     {
-      "term": "反",
+      "term": "妙",
       "chapters": 2,
       "refs": [
         {
-          "chapter": 25,
+          "chapter": 1,
           "segments": [
-            "25.4"
+            "1.4",
+            "1.7"
           ]
         },
         {
-          "chapter": 40,
+          "chapter": 27,
           "segments": [
-            "40.1"
+            "27.4"
           ]
         }
       ]
@@ -2099,19 +2448,6 @@
           "chapter": 78,
           "segments": [
             "78.1"
-          ]
-        }
-      ]
-    },
-    {
-      "term": "妙",
-      "chapters": 1,
-      "refs": [
-        {
-          "chapter": 1,
-          "segments": [
-            "1.4",
-            "1.7"
           ]
         }
       ]
