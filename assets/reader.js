@@ -132,10 +132,12 @@
 
   function renderNav(ch) {
     var nb = neighbors(ch)
+    // 鄰章若標過已讀就加一個 ✓，翻過去之前就看得出來讀過沒
+    var tick = function (n) { return readSet[n] ? '<span class="done">✓</span>' : '' }
     return '<nav class="chapnav">' +
-      (nb.prev ? '<a href="#/' + nb.prev + '">← 第 ' + nb.prev + ' 章</a>' : '<span></span>') +
+      (nb.prev ? '<a href="#/' + nb.prev + '">← 第 ' + nb.prev + ' 章' + tick(nb.prev) + '</a>' : '<span></span>') +
       '<span class="cur">第 ' + ch + ' 章</span>' +
-      (nb.next ? '<a href="#/' + nb.next + '">第 ' + nb.next + ' 章 →</a>' : '<span></span>') +
+      (nb.next ? '<a href="#/' + nb.next + '">' + tick(nb.next) + '第 ' + nb.next + ' 章 →</a>' : '<span></span>') +
       '</nav>'
   }
 
