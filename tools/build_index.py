@@ -28,17 +28,22 @@ def main():
 
     chapters = []
     kw = defaultdict(list)   # term -> [{chapter, segments, sense?}]
+    quiz_dir = ROOT / "data" / "quiz"
 
     for f in files:
         d = json.loads(f.read_text(encoding="utf-8"))
-        chapters.append({
+        entry = {
             "chapter": d["chapter"],
             "part": d["part"],
             "gist": d.get("gist", ""),
             "status": d["meta"]["status"],
             "segments": len(d["segments"]),
             "notes": len(d["notes"]),
-        })
+        }
+        # 有本章小考才標記；沒有的章前端就不畫小考區，免得去 fetch 一個不存在的檔
+        if (quiz_dir / f"{d['chapter']:03d}.json").exists():
+            entry["quiz"] = True
+        chapters.append(entry)
         for k in d["keywords"]:
             entry = {"chapter": d["chapter"], "segments": k["refs"]}
             if k.get("sense"):
@@ -62,7 +67,8 @@ def main():
         }, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    print(f"data/index.json：{len(chapters)} 章、{len(keywords)} 個關鍵詞")
+    withquiz = sum(1 for c in chapters if c.get("quiz"))
+    print(f"data/index.json：{len(chapters)} 章、{len(keywords)} 個關鍵詞、{withquiz} 章有小考")
     return 0
 
 

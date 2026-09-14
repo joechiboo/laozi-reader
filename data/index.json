@@ -8,7 +8,8 @@
       "gist": "道說不盡、名叫不全；從無與有兩頭看同一件事",
       "status": "draft",
       "segments": 7,
-      "notes": 10
+      "notes": 10,
+      "quiz": true
     },
     {
       "chapter": 2,
@@ -16,7 +17,8 @@
       "gist": "美惡善否相對而生；聖人處無為之事，功成而不居",
       "status": "draft",
       "segments": 5,
-      "notes": 7
+      "notes": 7,
+      "quiz": true
     },
     {
       "chapter": 3,
@@ -24,7 +26,8 @@
       "gist": "不尚賢使民不爭；虛心實腹、弱志強骨；為無為則無不治",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 4,
@@ -32,7 +35,8 @@
       "gist": "道是虛的，所以用不完；在天帝之先",
       "status": "draft",
       "segments": 5,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 5,
@@ -40,7 +44,8 @@
       "gist": "天地不仁，以萬物為芻狗；天地之間猶橐籥，虛而不屈",
       "status": "draft",
       "segments": 3,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 6,
@@ -48,7 +53,8 @@
       "gist": "谷神玄牝：生而不竭的那道門，是天地的根",
       "status": "draft",
       "segments": 3,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 7,
@@ -56,7 +62,8 @@
       "gist": "天地不自生故能長生；聖人後其身而身先，無私故成其私",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 8,
@@ -64,7 +71,8 @@
       "gist": "上善若水：利萬物、不爭、居下，所以最接近道",
       "status": "draft",
       "segments": 4,
-      "notes": 8
+      "notes": 8,
+      "quiz": true
     },
     {
       "chapter": 9,
@@ -72,7 +80,8 @@
       "gist": "持盈揣銳不可長保；功遂身退，天之道",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 10,
@@ -80,7 +89,8 @@
       "gist": "六個「能……乎」的自問；生而不有、長而不宰，是謂玄德",
       "status": "draft",
       "segments": 7,
-      "notes": 7
+      "notes": 7,
+      "quiz": true
     },
     {
       "chapter": 11,

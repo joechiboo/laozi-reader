@@ -123,6 +123,36 @@ def check_quiz(all_segs):
     return errs
 
 
+def check_chapter_quiz(all_segs):
+    """本章小考：每章五題，ref 必須指到「本章」的句（跨章就不叫本章小考了）。"""
+    qdir = ROOT / "data" / "quiz"
+    if not qdir.exists():
+        return []
+    errs = []
+    for f in sorted(qdir.glob("*.json")):
+        q = json.loads(f.read_text(encoding="utf-8"))
+        ch = q.get("chapter")
+        if f.stem != f"{ch:03d}":
+            errs.append(f"{f.name}：檔名與 chapter 不符")
+        if len(q["questions"]) != 5:
+            errs.append(f"{f.name}：應為 5 題，實為 {len(q['questions'])} 題")
+        ids = [x["id"] for x in q["questions"]]
+        if len(set(ids)) != len(ids):
+            errs.append(f"{f.name}：題目 id 有重複")
+        for x in q["questions"]:
+            if not isinstance(x.get("answer"), bool):
+                errs.append(f"{f.name} {x['id']}：answer 不是 true/false")
+            for field in ("statement", "explain", "ref"):
+                if not x.get(field):
+                    errs.append(f"{f.name} {x['id']}：缺少 {field}")
+            ref = x.get("ref", "")
+            if ref and ref not in all_segs:
+                errs.append(f"{f.name} {x['id']}：ref {ref} 指不到任何一句")
+            elif ref and ref.split(".")[0] != str(ch):
+                errs.append(f"{f.name} {x['id']}：ref {ref} 不在本章")
+    return errs
+
+
 def main():
     schema_check = None
     try:
@@ -164,14 +194,14 @@ def main():
             print(f"[ OK ] {f.name}")
     print(f"\n{len(files)} 章，{bad} 章有問題")
 
-    quiz_errs = check_quiz(all_segs)
+    quiz_errs = check_quiz(all_segs) + check_chapter_quiz(all_segs)
     if quiz_errs:
         bad += 1
-        print("\n[FAIL] quiz.json")
+        print("\n[FAIL] 題庫")
         for e in quiz_errs:
             print(f"  - {e}")
     else:
-        print("[ OK ] quiz.json")
+        print("[ OK ] 題庫（綜合測驗＋本章小考）")
     if pending:
         print("\n互見錨點指向尚未建立的章（不算錯，那幾章建好後會自動開始檢查）：")
         for line in pending:

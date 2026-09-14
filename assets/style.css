@@ -286,7 +286,68 @@ body.lean .full-text { font-size: 1.45rem; line-height: 2; margin-bottom: 2.6rem
 .kw-result li { font-size: .98rem; }
 .kw-result .close { float: right; }
 
-/* ── 小測驗 ────────────────────────────── */
+/* ── 本章小考 ──────────────────────────── */
+.chapquiz {
+  margin-top: 2.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+.chapquiz h3 {
+  margin: 0 0 .3rem;
+  font-size: .85rem;
+  letter-spacing: .25em;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.cq-intro { margin: 0 0 1rem; font-size: .8rem; color: var(--ink-2); }
+.cq-foot {
+  margin: 1.4rem 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: .9rem;
+  color: var(--ink-2);
+}
+.cq-foot .pass { color: var(--accent); font-weight: 700; letter-spacing: .05em; }
+.cq-reset {
+  flex: none;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: .8rem;
+  padding: .25rem .9rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.cq-reset:hover { border-color: var(--accent); color: var(--accent); }
+.pass-badge { border-style: solid; }
+
+/* 側欄：讀過是圓點，考核通過改標 ✓（通過幾乎一定也讀過，所以讓 ✓ 蓋過圓點） */
+.chapter-list li.pass a {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+.chapter-list li.pass a::after {
+  content: "✓";
+  background: none;
+  width: auto;
+  height: auto;
+  top: -1px;
+  right: 2px;
+  font-size: .6rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.chapter-list li.active.pass a::after { color: var(--paper); }
+
+/* 精簡模式是為了讀原文，小考跟著收起來 */
+body.lean .chapquiz { display: none; }
+
+/* ── 綜合小測驗 ────────────────────────── */
 .quiz-score {
   font-size: .85rem;
   color: var(--ink-2);

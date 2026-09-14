@@ -74,8 +74,9 @@
 
   function renderProgress() {
     var n = readCount()
+    var p = passCount()
     $progress.textContent = index.chapters.length + ' / ' + TOTAL + ' 章已有資料' +
-      (n ? '　已讀 ' + n + ' 章' : '')
+      (n ? '　已讀 ' + n + ' 章' : '') + (p ? '　通過 ' + p + ' 章' : '')
   }
 
   function readButton(ch) {
@@ -94,6 +95,42 @@
     var li = $list.querySelector('li[data-ch="' + ch + '"]')
     if (li) li.classList.toggle('read', !!readSet[ch])
     renderProgress()
+  }
+
+  // 本章小考：五題答對四題算通過。與「讀過」分開——讀過是自己說的，通過是考出來的。
+  var PASS_KEY = 'laozi-reader:pass'
+  var CHAPQUIZ_KEY = 'laozi-reader:chapquiz'
+  var PASS_NEED = 4
+  var passSet = {}
+  var chapAnswers = {}
+  var chapQuiz = {}
+
+  function loadQuizState() {
+    try {
+      var p = JSON.parse(localStorage.getItem(PASS_KEY) || '[]')
+      passSet = {}
+      if (Array.isArray(p)) p.forEach(function (n) { passSet[n] = true })
+    } catch (e) { passSet = {} }
+    try { chapAnswers = JSON.parse(localStorage.getItem(CHAPQUIZ_KEY) || '{}') || {} }
+    catch (e) { chapAnswers = {} }
+  }
+
+  function saveQuizState() {
+    var list = Object.keys(passSet).filter(function (k) { return passSet[k] })
+      .map(Number).sort(function (a, b) { return a - b })
+    try {
+      localStorage.setItem(PASS_KEY, JSON.stringify(list))
+      localStorage.setItem(CHAPQUIZ_KEY, JSON.stringify(chapAnswers))
+    } catch (e) { /* 無痕視窗等 */ }
+  }
+
+  function passCount() {
+    return Object.keys(passSet).filter(function (k) { return passSet[k] }).length
+  }
+
+  function hasQuiz(ch) {
+    var c = index.chapters.filter(function (x) { return x.chapter === ch })[0]
+    return !!(c && c.quiz)
   }
 
   var ENTITIES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }
@@ -150,8 +187,11 @@
         head = '<li class="part">' + esc(c.part) + '</li>'
         lastPart = c.part
       }
+      var cls = []
+      if (readSet[c.chapter]) cls.push('read')
+      if (passSet[c.chapter]) cls.push('pass')
       return head + '<li data-ch="' + c.chapter + '"' +
-        (readSet[c.chapter] ? ' class="read"' : '') + '>' +
+        (cls.length ? ' class="' + cls.join(' ') + '"' : '') + '>' +
         '<a href="#/' + c.chapter + '" title="' + esc(c.gist) + '">' + c.chapter + '</a></li>'
     }).join('')
     $list.innerHTML = html
@@ -206,7 +246,8 @@
     html += renderNav(d.chapter)
     html += '<div class="chapter-head">' +
       '<div class="head-row">' +
-      '<h2>第 ' + d.chapter + ' 章' + (draft ? '<span class="badge">白話待校稿</span>' : '') + '</h2>' +
+      '<h2>第 ' + d.chapter + ' 章' + (draft ? '<span class="badge">白話待校稿</span>' : '') +
+      (passSet[d.chapter] ? '<span class="badge pass-badge">考核通過 ✓</span>' : '') + '</h2>' +
       readButton(d.chapter) + '</div>' +
       '<p class="meta">' + esc(d.part) + ' ／ ' + esc(d.meta.base || '王弼本') +
       ' ／ ' + d.segments.length + ' 句 ' + d.notes.length + ' 註' +
@@ -224,6 +265,7 @@
     }).join('')
 
     html += '<div class="readthrough"><h3>全章通讀</h3><p>' + esc(d.plain) + '</p></div>'
+    if (hasQuiz(d.chapter)) html += '<section class="chapquiz" id="chapquiz"></section>'
 
     if (draft && d.meta.todo && d.meta.todo.length) {
       html += '<div class="todo-box">待辦：<ul>' +
@@ -238,6 +280,8 @@
     Array.prototype.forEach.call($list.children, function (li) {
       li.classList.toggle('active', Number(li.dataset.ch) === d.chapter)
     })
+
+    if (hasQuiz(d.chapter)) showChapQuiz(d.chapter)
 
     if (focusSeg) {
       var el = document.getElementById(focusSeg)
@@ -328,6 +372,99 @@
       .catch(function () { $main.innerHTML = '<p class="loading">載不到 data/quiz.json。</p>' })
   }
 
+  // ── 本章小考 ──────────────────────────────
+  function chapQuizResult(ch) {
+    var q = chapQuiz[ch]
+    var mine = chapAnswers[ch] || {}
+    var done = 0, right = 0
+    q.questions.forEach(function (x) {
+      if (typeof mine[x.id] === 'boolean') {
+        done++
+        if (mine[x.id] === x.answer) right++
+      }
+    })
+    return { done: done, right: right, total: q.questions.length }
+  }
+
+  function renderChapQuestion(ch, x, i) {
+    var mine = (chapAnswers[ch] || {})[x.id]
+    var answered = typeof mine === 'boolean'
+    var html = '<p class="q-stmt"><span class="q-no">' + (i + 1) + '</span>' + esc(x.statement) + '</p>'
+    html += '<p class="q-btns">' +
+      '<button type="button" data-cq="' + ch + '" data-qid="' + x.id + '" data-v="1"' +
+      (answered && mine === true ? ' class="picked"' : '') + '>是</button>' +
+      '<button type="button" data-cq="' + ch + '" data-qid="' + x.id + '" data-v="0"' +
+      (answered && mine === false ? ' class="picked"' : '') + '>否</button>' +
+      '</p>'
+    if (answered) {
+      var ok = mine === x.answer
+      html += '<p class="q-verdict ' + (ok ? 'ok' : 'ng') + '">' +
+        (ok ? '答對了' : '答錯了') + '　正解：' + (x.answer ? '是' : '否') + '</p>' +
+        '<p class="q-explain">' + esc(x.explain) + '</p>' +
+        '<p class="q-ref">原文在 <a href="#/' + esc(x.ref) + '">' + esc(x.ref) + '</a></p>'
+    }
+    return html
+  }
+
+  function chapQuizFoot(ch) {
+    var r = chapQuizResult(ch)
+    var line
+    if (r.done < r.total) {
+      line = '已答 ' + r.done + ' / ' + r.total + '　答對 ' + r.right + ' 題（答滿五題才結算）'
+    } else if (r.right >= PASS_NEED) {
+      line = '<strong class="pass">答對 ' + r.right + ' / ' + r.total + '　考核通過 ✓</strong>'
+    } else {
+      line = '答對 ' + r.right + ' / ' + r.total + '　差一點（要 ' + PASS_NEED + ' 題才算通過），回頭看看原文再重做'
+    }
+    return '<p class="cq-foot"><span id="cq-score">' + line + '</span>' +
+      '<button type="button" class="cq-reset" data-cq-reset="' + ch + '">重做本章</button></p>'
+  }
+
+  // 答滿五題才結算；通過與否直接由答題結果決定，不能自己按
+  function gradeChapQuiz(ch) {
+    var r = chapQuizResult(ch)
+    var was = !!passSet[ch]
+    var now = r.done === r.total && r.right >= PASS_NEED
+    passSet[ch] = now
+    saveQuizState()
+    if (was !== now) {
+      var li = $list.querySelector('li[data-ch="' + ch + '"]')
+      if (li) li.classList.toggle('pass', now)
+      var h2 = $main.querySelector('.head-row h2')
+      if (h2) {
+        var badge = h2.querySelector('.pass-badge')
+        if (now && !badge) h2.insertAdjacentHTML('beforeend', '<span class="badge pass-badge">考核通過 ✓</span>')
+        if (!now && badge) badge.remove()
+      }
+      renderProgress()
+    }
+  }
+
+  function renderChapQuiz(ch) {
+    var box = document.getElementById('chapquiz')
+    if (!box) return
+    var q = chapQuiz[ch]
+    box.innerHTML = '<h3>本章小考</h3>' +
+      '<p class="cq-intro">五題是非題，答對 ' + PASS_NEED + ' 題即通過。答完會告訴你原文在哪一句。</p>' +
+      '<ol class="quiz-list">' +
+      q.questions.map(function (x, i) {
+        return '<li class="qitem" id="cq-' + ch + '-' + x.id + '">' +
+          renderChapQuestion(ch, x, i) + '</li>'
+      }).join('') +
+      '</ol>' + chapQuizFoot(ch)
+  }
+
+  function showChapQuiz(ch) {
+    if (chapQuiz[ch]) { renderChapQuiz(ch); return }
+    fetch('data/quiz/' + pad(ch) + '.json')
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json() })
+      .then(function (d) { chapQuiz[ch] = d; renderChapQuiz(ch) })
+      .catch(function () {
+        var box = document.getElementById('chapquiz')
+        if (box) box.innerHTML = ''
+      })
+  }
+
   // #/quiz、#/1 或 #/1.3
   function route() {
     var raw = (location.hash || '').replace(/^#\/?/, '').trim()
@@ -369,6 +506,39 @@
       activeTerm = null
       Array.prototype.forEach.call($cloud.children, function (b) { b.classList.remove('on') })
       route()
+      return
+    }
+
+    var cq = e.target.closest && e.target.closest('.q-btns button[data-cq]')
+    if (cq) {
+      var ch = Number(cq.dataset.cq)
+      var qid = cq.dataset.qid
+      var i = -1
+      chapQuiz[ch].questions.forEach(function (x, n) { if (x.id === qid) i = n })
+      if (i < 0) return
+      if (!chapAnswers[ch]) chapAnswers[ch] = {}
+      chapAnswers[ch][qid] = cq.dataset.v === '1'
+      saveQuizState()
+      document.getElementById('cq-' + ch + '-' + qid).innerHTML =
+        renderChapQuestion(ch, chapQuiz[ch].questions[i], i)
+      gradeChapQuiz(ch)
+      var foot = document.querySelector('.cq-foot')
+      if (foot) foot.outerHTML = chapQuizFoot(ch)
+      return
+    }
+
+    var cqr = e.target.closest && e.target.closest('.cq-reset')
+    if (cqr) {
+      var rch = Number(cqr.dataset.cqReset)
+      delete chapAnswers[rch]
+      passSet[rch] = false
+      saveQuizState()
+      renderChapQuiz(rch)
+      var li2 = $list.querySelector('li[data-ch="' + rch + '"]')
+      if (li2) li2.classList.remove('pass')
+      var badge2 = $main.querySelector('.pass-badge')
+      if (badge2) badge2.remove()
+      renderProgress()
       return
     }
 
@@ -416,6 +586,7 @@
     .then(function (d) {
       index = d
       loadRead()
+      loadQuizState()
       renderSidebar()
       route()
     })
