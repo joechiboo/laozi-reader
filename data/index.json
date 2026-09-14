@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-14",
-  "total": 18,
+  "total": 22,
   "chapters": [
     {
       "chapter": 1,
@@ -51,6 +51,14 @@
       "notes": 6
     },
     {
+      "chapter": 24,
+      "part": "道經",
+      "gist": "企者不立：自見自伐者不成，在道是餘食贅行",
+      "status": "draft",
+      "segments": 4,
+      "notes": 4
+    },
+    {
       "chapter": 37,
       "part": "道經",
       "gist": "道常無為而無不為；侯王守之，萬物自化，天下自定",
@@ -83,12 +91,28 @@
       "notes": 11
     },
     {
+      "chapter": 43,
+      "part": "德經",
+      "gist": "至柔馳騁至堅，無有入無間；不言之教，無為之益",
+      "status": "draft",
+      "segments": 3,
+      "notes": 5
+    },
+    {
       "chapter": 48,
       "part": "德經",
       "gist": "為學日益，為道日損；損到無為，取天下常以無事",
       "status": "draft",
       "segments": 4,
       "notes": 6
+    },
+    {
+      "chapter": 51,
+      "part": "德經",
+      "gist": "道生德畜，莫之命而常自然；生而不有，是謂玄德",
+      "status": "draft",
+      "segments": 5,
+      "notes": 5
     },
     {
       "chapter": 56,
@@ -112,6 +136,14 @@
       "gist": "治大國若烹小鮮：不擾動，則鬼神與聖人都不傷人",
       "status": "draft",
       "segments": 5,
+      "notes": 6
+    },
+    {
+      "chapter": 63,
+      "part": "德經",
+      "gist": "為無為；難事作於易，大事作於細，故聖人終不為大",
+      "status": "draft",
+      "segments": 6,
       "notes": 6
     },
     {
@@ -150,7 +182,7 @@
   "keywords": [
     {
       "term": "天下",
-      "chapters": 11,
+      "chapters": 13,
       "refs": [
         {
           "chapter": 2,
@@ -184,6 +216,13 @@
           ]
         },
         {
+          "chapter": 43,
+          "segments": [
+            "43.1",
+            "43.3"
+          ]
+        },
+        {
           "chapter": 48,
           "segments": [
             "48.4"
@@ -209,6 +248,12 @@
           ]
         },
         {
+          "chapter": 63,
+          "segments": [
+            "63.3"
+          ]
+        },
+        {
           "chapter": 66,
           "segments": [
             "66.4",
@@ -226,8 +271,94 @@
       ]
     },
     {
+      "term": "道",
+      "chapters": 11,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.1"
+          ],
+          "sense": "兼指道體與言說，見 n1"
+        },
+        {
+          "chapter": 4,
+          "segments": [
+            "4.1"
+          ],
+          "sense": "以虛為體"
+        },
+        {
+          "chapter": 8,
+          "segments": [
+            "8.2"
+          ],
+          "sense": "以水為喻所指向的道"
+        },
+        {
+          "chapter": 24,
+          "segments": [
+            "24.3",
+            "24.4"
+          ],
+          "sense": "作為衡量行為的尺度"
+        },
+        {
+          "chapter": 37,
+          "segments": [
+            "37.1"
+          ],
+          "sense": "以無為為常態"
+        },
+        {
+          "chapter": 40,
+          "segments": [
+            "40.1"
+          ],
+          "sense": "就運動與作用說"
+        },
+        {
+          "chapter": 42,
+          "segments": [
+            "42.1"
+          ],
+          "sense": "生成的源頭，見 n1"
+        },
+        {
+          "chapter": 48,
+          "segments": [
+            "48.1"
+          ],
+          "sense": "作為修為的對象"
+        },
+        {
+          "chapter": 51,
+          "segments": [
+            "51.1",
+            "51.2",
+            "51.3"
+          ],
+          "sense": "與德分工：道生、德畜"
+        },
+        {
+          "chapter": 60,
+          "segments": [
+            "60.2"
+          ],
+          "sense": "治理所依循的道"
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.5"
+          ],
+          "sense": "天之道與聖人之道對舉"
+        }
+      ]
+    },
+    {
       "term": "萬物",
-      "chapters": 9,
+      "chapters": 10,
       "refs": [
         {
           "chapter": 1,
@@ -280,6 +411,12 @@
           ]
         },
         {
+          "chapter": 51,
+          "segments": [
+            "51.2"
+          ]
+        },
+        {
           "chapter": 76,
           "segments": [
             "76.2"
@@ -288,77 +425,8 @@
       ]
     },
     {
-      "term": "道",
-      "chapters": 9,
-      "refs": [
-        {
-          "chapter": 1,
-          "segments": [
-            "1.1"
-          ],
-          "sense": "兼指道體與言說，見 n1"
-        },
-        {
-          "chapter": 4,
-          "segments": [
-            "4.1"
-          ],
-          "sense": "以虛為體"
-        },
-        {
-          "chapter": 8,
-          "segments": [
-            "8.2"
-          ],
-          "sense": "以水為喻所指向的道"
-        },
-        {
-          "chapter": 37,
-          "segments": [
-            "37.1"
-          ],
-          "sense": "以無為為常態"
-        },
-        {
-          "chapter": 40,
-          "segments": [
-            "40.1"
-          ],
-          "sense": "就運動與作用說"
-        },
-        {
-          "chapter": 42,
-          "segments": [
-            "42.1"
-          ],
-          "sense": "生成的源頭，見 n1"
-        },
-        {
-          "chapter": 48,
-          "segments": [
-            "48.1"
-          ],
-          "sense": "作為修為的對象"
-        },
-        {
-          "chapter": 60,
-          "segments": [
-            "60.2"
-          ],
-          "sense": "治理所依循的道"
-        },
-        {
-          "chapter": 81,
-          "segments": [
-            "81.5"
-          ],
-          "sense": "天之道與聖人之道對舉"
-        }
-      ]
-    },
-    {
       "term": "聖人",
-      "chapters": 7,
+      "chapters": 8,
       "refs": [
         {
           "chapter": 2,
@@ -385,6 +453,13 @@
           ]
         },
         {
+          "chapter": 63,
+          "segments": [
+            "63.4",
+            "63.6"
+          ]
+        },
+        {
           "chapter": 66,
           "segments": [
             "66.2",
@@ -402,6 +477,50 @@
           "segments": [
             "81.4",
             "81.5"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "無為",
+      "chapters": 6,
+      "refs": [
+        {
+          "chapter": 2,
+          "segments": [
+            "2.3"
+          ]
+        },
+        {
+          "chapter": 37,
+          "segments": [
+            "37.1"
+          ]
+        },
+        {
+          "chapter": 43,
+          "segments": [
+            "43.2",
+            "43.3"
+          ]
+        },
+        {
+          "chapter": 48,
+          "segments": [
+            "48.2",
+            "48.3"
+          ]
+        },
+        {
+          "chapter": 57,
+          "segments": [
+            "57.4"
+          ]
+        },
+        {
+          "chapter": 63,
+          "segments": [
+            "63.1"
           ]
         }
       ]
@@ -500,32 +619,64 @@
       ]
     },
     {
-      "term": "無為",
+      "term": "無",
       "chapters": 4,
       "refs": [
         {
+          "chapter": 1,
+          "segments": [
+            "1.3",
+            "1.4"
+          ]
+        },
+        {
           "chapter": 2,
           "segments": [
-            "2.3"
+            "2.2"
           ]
         },
         {
-          "chapter": 37,
+          "chapter": 40,
           "segments": [
-            "37.1"
+            "40.2"
           ]
         },
         {
-          "chapter": 48,
+          "chapter": 43,
           "segments": [
-            "48.2",
-            "48.3"
+            "43.2"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "玄",
+      "chapters": 4,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.6",
+            "1.7"
           ]
         },
         {
-          "chapter": 57,
+          "chapter": 6,
           "segments": [
-            "57.4"
+            "6.1",
+            "6.2"
+          ]
+        },
+        {
+          "chapter": 51,
+          "segments": [
+            "51.5"
+          ]
+        },
+        {
+          "chapter": 56,
+          "segments": [
+            "56.2"
           ]
         }
       ]
@@ -551,6 +702,57 @@
           "chapter": 42,
           "segments": [
             "42.1"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "信",
+      "chapters": 3,
+      "refs": [
+        {
+          "chapter": 8,
+          "segments": [
+            "8.3"
+          ]
+        },
+        {
+          "chapter": 63,
+          "segments": [
+            "63.5"
+          ]
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.1"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "常",
+      "chapters": 3,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5"
+          ]
+        },
+        {
+          "chapter": 37,
+          "segments": [
+            "37.1"
+          ]
+        },
+        {
+          "chapter": 51,
+          "segments": [
+            "51.3"
           ]
         }
       ]
@@ -611,6 +813,33 @@
       ]
     },
     {
+      "term": "德",
+      "chapters": 3,
+      "refs": [
+        {
+          "chapter": 51,
+          "segments": [
+            "51.1",
+            "51.2",
+            "51.3",
+            "51.5"
+          ]
+        },
+        {
+          "chapter": 60,
+          "segments": [
+            "60.5"
+          ]
+        },
+        {
+          "chapter": 63,
+          "segments": [
+            "63.2"
+          ]
+        }
+      ]
+    },
+    {
       "term": "有",
       "chapters": 3,
       "refs": [
@@ -636,52 +865,26 @@
       ]
     },
     {
-      "term": "無",
+      "term": "益",
       "chapters": 3,
       "refs": [
         {
-          "chapter": 1,
+          "chapter": 42,
           "segments": [
-            "1.3",
-            "1.4"
+            "42.4"
           ]
         },
         {
-          "chapter": 2,
+          "chapter": 43,
           "segments": [
-            "2.2"
+            "43.2",
+            "43.3"
           ]
         },
         {
-          "chapter": 40,
+          "chapter": 48,
           "segments": [
-            "40.2"
-          ]
-        }
-      ]
-    },
-    {
-      "term": "玄",
-      "chapters": 3,
-      "refs": [
-        {
-          "chapter": 1,
-          "segments": [
-            "1.6",
-            "1.7"
-          ]
-        },
-        {
-          "chapter": 6,
-          "segments": [
-            "6.1",
-            "6.2"
-          ]
-        },
-        {
-          "chapter": 56,
-          "segments": [
-            "56.2"
+            "48.1"
           ]
         }
       ]
@@ -725,27 +928,6 @@
       ]
     },
     {
-      "term": "常",
-      "chapters": 2,
-      "refs": [
-        {
-          "chapter": 1,
-          "segments": [
-            "1.1",
-            "1.2",
-            "1.4",
-            "1.5"
-          ]
-        },
-        {
-          "chapter": 37,
-          "segments": [
-            "37.1"
-          ]
-        }
-      ]
-    },
-    {
       "term": "損",
       "chapters": 2,
       "refs": [
@@ -784,24 +966,6 @@
       ]
     },
     {
-      "term": "益",
-      "chapters": 2,
-      "refs": [
-        {
-          "chapter": 42,
-          "segments": [
-            "42.4"
-          ]
-        },
-        {
-          "chapter": 48,
-          "segments": [
-            "48.1"
-          ]
-        }
-      ]
-    },
-    {
       "term": "妙",
       "chapters": 1,
       "refs": [
@@ -815,13 +979,13 @@
       ]
     },
     {
-      "term": "德",
+      "term": "自然",
       "chapters": 1,
       "refs": [
         {
-          "chapter": 60,
+          "chapter": 51,
           "segments": [
-            "60.5"
+            "51.3"
           ]
         }
       ]
