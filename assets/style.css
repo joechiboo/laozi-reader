@@ -413,6 +413,56 @@ body.lean .chapquiz { display: none; }
 /* 精簡模式是為了讀原文，測驗頁不受影響 */
 body.lean .quiz .seg { display: block; }
 
+/* ── 成語 ──────────────────────────────── */
+.im-chips { margin: .5rem 0 0; font-size: .82rem; color: var(--ink-2); }
+.im-chips a {
+  display: inline-block;
+  margin-left: .4rem;
+  padding: .05rem .5rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+.im-chips a:hover { border-color: var(--accent); text-decoration: none; }
+
+.idiom-list { list-style: none; margin: 0; padding: 0; }
+.idiom {
+  border-bottom: 1px dotted var(--rule);
+  padding: 1.2rem 0 1.3rem;
+  scroll-margin-top: 1rem;
+}
+.idiom.hit { background: var(--accent-soft); }
+.idiom h3 {
+  margin: 0 0 .5rem;
+  font-size: 1.25rem;
+  letter-spacing: .08em;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.idiom .im-ref { font-size: .78rem; letter-spacing: 0; font-weight: 400; flex: none; }
+.im-source {
+  margin: 0 0 .7rem;
+  font-size: 1.05rem;
+  letter-spacing: .04em;
+  background: var(--paper-2);
+  padding: .6rem .9rem;
+}
+.im-now, .im-note { margin: .35rem 0 0; font-size: .92rem; color: var(--ink-2); line-height: 1.8; }
+.im-tag {
+  display: inline-block;
+  min-width: 2.6rem;
+  margin-right: .5rem;
+  font-size: .72rem;
+  letter-spacing: .1em;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  padding: 0 .3rem;
+  text-align: center;
+  vertical-align: .1em;
+}
+body.lean .im-chips { display: none; }
+
 /* ── 難字讀音 ──────────────────────────── */
 .ru {
   border-bottom: 1px dotted var(--accent);

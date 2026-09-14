@@ -172,6 +172,38 @@ def check_readings(seg_text):
     return errs
 
 
+def check_idioms(seg_text):
+    """成語：ref 要指得到句；引的原句必須真的出現在那一章（去掉標點後比對）。"""
+    path = ROOT / "data" / "idioms.json"
+    if not path.exists():
+        return []
+    errs = []
+    d = json.loads(path.read_text(encoding="utf-8"))
+    ids = [x["id"] for x in d["idioms"]]
+    if len(set(ids)) != len(ids):
+        errs.append("idioms：id 有重複")
+    # 整章原文（去標點）供比對
+    chapter_body = {}
+    for sid, text in seg_text.items():
+        ch = sid.split(".")[0]
+        chapter_body[ch] = chapter_body.get(ch, "") + re.sub(r"[，。；：？！、「」]", "", text)
+    for x in d["idioms"]:
+        for field in ("idiom", "ref", "source", "now", "note"):
+            if not x.get(field):
+                errs.append(f"idioms {x.get('id')}：缺少 {field}")
+        ref = x.get("ref", "")
+        if ref and ref not in seg_text:
+            errs.append(f"idioms {x['id']}：ref {ref} 指不到任何一句")
+            continue
+        body = chapter_body.get(ref.split(".")[0], "")
+        # 原句允許用「……」串接不相連的兩段，各段分別比對
+        for part in re.split(r"…+", x.get("source", "")):
+            src = re.sub(r"[，。；：？！、「」]", "", part)
+            if src and src not in body:
+                errs.append(f"idioms {x['id']}：原句在第 {ref.split('.')[0]} 章找不到——{part}")
+    return errs
+
+
 def main():
     schema_check = None
     try:
@@ -213,14 +245,14 @@ def main():
             print(f"[ OK ] {f.name}")
     print(f"\n{len(files)} 章，{bad} 章有問題")
 
-    quiz_errs = check_quiz(all_segs) + check_chapter_quiz(all_segs) + check_readings(seg_text)
+    quiz_errs = check_quiz(all_segs) + check_chapter_quiz(all_segs) + check_readings(seg_text) + check_idioms(seg_text)
     if quiz_errs:
         bad += 1
         print("\n[FAIL] 題庫")
         for e in quiz_errs:
             print(f"  - {e}")
     else:
-        print("[ OK ] 題庫（綜合測驗＋本章小考）與難字讀音表")
+        print("[ OK ] 題庫、難字讀音表、成語")
     if pending:
         print("\n互見錨點指向尚未建立的章（不算錯，那幾章建好後會自動開始檢查）：")
         for line in pending:

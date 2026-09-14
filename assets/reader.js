@@ -337,7 +337,14 @@
       readButton(d.chapter) + '</div>' +
       '<p class="meta">' + esc(d.part) + ' ／ ' + esc(d.meta.base || '王弼本') +
       ' ／ ' + d.segments.length + ' 句 ' + d.notes.length + ' 註' +
-      (d.gist ? ' ／ ' + esc(d.gist) : '') + '</p></div>'
+      (d.gist ? ' ／ ' + esc(d.gist) : '') + '</p>' +
+      (function () {
+        var list = idiomsOf(d.chapter)
+        if (!list.length) return ''
+        return '<p class="im-chips">本章出處的成語：' + list.map(function (x) {
+          return '<a href="#/idioms/' + esc(x.id) + '">' + esc(x.idiom) + '</a>'
+        }).join('') + '</p>'
+      })() + '</div>'
 
     html += '<p class="full-text">' + mark(d.text, activeTerm) + '</p>'
 
@@ -578,10 +585,52 @@
       })
   }
 
-  // #/quiz、#/1 或 #/1.3
+  // ── 成語 ──────────────────────────────────
+  var idioms = null
+
+  function idiomsOf(ch) {
+    if (!idioms) return []
+    return idioms.idioms.filter(function (x) { return Number(x.ref.split('.')[0]) === ch })
+  }
+
+  function renderIdioms(focus) {
+    var html = '<div class="chapter-head"><h2>' + esc(idioms.title) + '</h2>' +
+      '<p class="meta">' + esc(idioms.intro) + '　共 ' + idioms.idioms.length + ' 條</p></div>' +
+      '<ol class="idiom-list">' +
+      idioms.idioms.map(function (x) {
+        return '<li class="idiom" id="im-' + x.id + '">' +
+          '<h3>' + esc(x.idiom) + '<a class="im-ref" href="#/' + esc(x.ref) + '">第 ' +
+          x.ref.split('.')[0] + ' 章 ' + esc(x.ref) + '</a></h3>' +
+          '<p class="im-source">' + annotate(esc(x.source)) + '</p>' +
+          '<p class="im-now"><span class="im-tag">今義</span>' + esc(x.now) + '</p>' +
+          '<p class="im-note"><span class="im-tag">原文</span>' + esc(x.note) + '</p>' +
+          '</li>'
+      }).join('') + '</ol>'
+    $main.innerHTML = html
+    Array.prototype.forEach.call($list.children, function (li) { li.classList.remove('active') })
+    if (focus) {
+      var el = document.getElementById('im-' + focus)
+      if (el) { el.classList.add('hit'); el.scrollIntoView({ behavior: 'smooth', block: 'center' }); return }
+    }
+    window.scrollTo(0, 0)
+  }
+
+  function showIdioms(focus) {
+    if (idioms) { renderIdioms(focus); return }
+    fetch('data/idioms.json')
+      .then(function (r) { return r.json() })
+      .then(function (d) { idioms = d; renderIdioms(focus) })
+      .catch(function () { $main.innerHTML = '<p class="loading">載不到 data/idioms.json。</p>' })
+  }
+
+  // #/idioms、#/quiz、#/1 或 #/1.3
+  
   function route() {
     var raw = (location.hash || '').replace(/^#\/?/, '').trim()
     if (raw === 'quiz') { showQuiz(); return }
+    if (raw === 'idioms' || raw.indexOf('idioms/') === 0) {
+      showIdioms(raw.indexOf('/') > 0 ? raw.split('/')[1] : null); return
+    }
     var parts = raw.split('.')
     var ch = parseInt(parts[0], 10)
     if (!ch || ch < 1 || ch > TOTAL) ch = index.chapters.length ? index.chapters[0].chapter : 1
@@ -706,6 +755,10 @@
     .then(function (r) { return r.json() })
     .then(function (d) { readings = d.readings || {} })
     .catch(function () { readings = {} })
+    .then(function () { return fetch('data/idioms.json') })
+    .then(function (r) { return r.json() })
+    .then(function (d) { idioms = d })
+    .catch(function () { idioms = null })
     .then(function () { return fetch('data/index.json') })
     .then(function (r) { return r.json() })
     .then(function (d) {
