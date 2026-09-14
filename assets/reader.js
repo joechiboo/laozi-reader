@@ -13,6 +13,24 @@
   var $list = document.getElementById('chapter-list')
   var $cloud = document.getElementById('keyword-cloud')
   var $progress = document.getElementById('progress')
+  var $mode = document.getElementById('mode-toggle')
+
+  // 精簡模式：只留原文與全章通讀（白話、註解、todo 由 CSS 收起）
+  // 切換鈕在 masthead、不在 main 裡，所以換章重畫不會影響它。
+  var LEAN_KEY = 'laozi-reader:lean'
+
+  function setLean(on) {
+    document.body.classList.toggle('lean', on)
+    $mode.setAttribute('aria-pressed', on ? 'true' : 'false')
+    $mode.textContent = on ? '顯示白話與註解' : '只看原文與通讀'
+    try { localStorage.setItem(LEAN_KEY, on ? '1' : '0') } catch (e) { /* 無痕視窗等 */ }
+  }
+
+  $mode.addEventListener('click', function () {
+    setLean(!document.body.classList.contains('lean'))
+  })
+
+  try { setLean(localStorage.getItem(LEAN_KEY) === '1') } catch (e) { setLean(false) }
 
   var ENTITIES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }
   function esc(s) {

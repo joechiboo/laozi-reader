@@ -42,6 +42,31 @@ a:hover { text-decoration: underline; }
 .masthead h1 a { color: inherit; }
 .masthead .sub { margin: .6rem 0 0; color: var(--ink-2); font-size: .9rem; letter-spacing: .1em; }
 
+.modebar { margin: 1rem 0 0; }
+.mode-toggle {
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  padding: .3rem 1rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.mode-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.mode-toggle[aria-pressed="true"] {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* 精簡模式：只留原文與全章通讀，白話與註解收起來 */
+body.lean .seg { grid-template-columns: 1fr; padding: .7rem 0; }
+body.lean .seg .plain,
+body.lean .notes,
+body.lean .todo-box { display: none; }
+
 .layout {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
