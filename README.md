@@ -12,7 +12,7 @@ MVP 先做五章：**1、8、42、60、81**（第一章的道體與方法、第�
 | 項目 | 狀態 |
 | --- | --- |
 | JSON schema | ✅ 定稿（`data/schema.json`） |
-| 章資料 | 🟡 2 / 5 章（第 1、42 章），白話皆待口述校稿（`meta.status = draft`） |
+| 章資料 | 🟡 5 / 5 章（第 1、8、42、60、81 章）MVP 鋪完，白話皆待口述校稿（`meta.status = draft`） |
 | 受控詞表 | ✅ `data/keywords.md` |
 | 章資料檢查器 | ✅ `tools/validate.py` |
 | 索引生成 | ✅ `tools/build_index.py` |

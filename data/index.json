@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-14",
-  "total": 2,
+  "total": 5,
   "chapters": [
     {
       "chapter": 1,
@@ -11,23 +11,94 @@
       "notes": 10
     },
     {
+      "chapter": 8,
+      "part": "道經",
+      "gist": "上善若水：利萬物、不爭、居下，所以最接近道",
+      "status": "draft",
+      "segments": 4,
+      "notes": 8
+    },
+    {
       "chapter": 42,
       "part": "德經",
       "gist": "道生萬物的次第；陰陽沖和，損益相反而相成",
       "status": "draft",
       "segments": 6,
       "notes": 11
+    },
+    {
+      "chapter": 60,
+      "part": "德經",
+      "gist": "治大國若烹小鮮：不擾動，則鬼神與聖人都不傷人",
+      "status": "draft",
+      "segments": 5,
+      "notes": 6
+    },
+    {
+      "chapter": 81,
+      "part": "德經",
+      "gist": "全書收束：信美、善辯、知博三組相反，終於利而不害、為而不爭",
+      "status": "draft",
+      "segments": 5,
+      "notes": 7
     }
   ],
   "keywords": [
     {
+      "term": "道",
+      "chapters": 5,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.1"
+          ],
+          "sense": "兼指道體與言說，見 n1"
+        },
+        {
+          "chapter": 8,
+          "segments": [
+            "8.2"
+          ],
+          "sense": "以水為喻所指向的道"
+        },
+        {
+          "chapter": 42,
+          "segments": [
+            "42.1"
+          ],
+          "sense": "生成的源頭，見 n1"
+        },
+        {
+          "chapter": 60,
+          "segments": [
+            "60.2"
+          ],
+          "sense": "治理所依循的道"
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.5"
+          ],
+          "sense": "天之道與聖人之道對舉"
+        }
+      ]
+    },
+    {
       "term": "萬物",
-      "chapters": 2,
+      "chapters": 3,
       "refs": [
         {
           "chapter": 1,
           "segments": [
             "1.3"
+          ]
+        },
+        {
+          "chapter": 8,
+          "segments": [
+            "8.2"
           ]
         },
         {
@@ -40,22 +111,60 @@
       ]
     },
     {
-      "term": "道",
+      "term": "不爭",
       "chapters": 2,
       "refs": [
         {
-          "chapter": 1,
+          "chapter": 8,
           "segments": [
-            "1.1"
-          ],
-          "sense": "兼指道體與言說，見 n1"
+            "8.2",
+            "8.4"
+          ]
         },
         {
-          "chapter": 42,
+          "chapter": 81,
           "segments": [
-            "42.1"
-          ],
-          "sense": "生成的源頭，見 n1"
+            "81.5"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "善",
+      "chapters": 2,
+      "refs": [
+        {
+          "chapter": 8,
+          "segments": [
+            "8.1",
+            "8.2",
+            "8.3"
+          ]
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.2"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "聖人",
+      "chapters": 2,
+      "refs": [
+        {
+          "chapter": 60,
+          "segments": [
+            "60.4"
+          ]
+        },
+        {
+          "chapter": 81,
+          "segments": [
+            "81.4",
+            "81.5"
+          ]
         }
       ]
     },
@@ -80,6 +189,18 @@
           "chapter": 42,
           "segments": [
             "42.2"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "天下",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 60,
+          "segments": [
+            "60.2"
           ]
         }
       ]
@@ -113,6 +234,18 @@
       ]
     },
     {
+      "term": "德",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 60,
+          "segments": [
+            "60.5"
+          ]
+        }
+      ]
+    },
+    {
       "term": "損",
       "chapters": 1,
       "refs": [
@@ -133,6 +266,19 @@
           "segments": [
             "1.3",
             "1.5"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "水",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 8,
+          "segments": [
+            "8.1",
+            "8.2"
           ]
         }
       ]
