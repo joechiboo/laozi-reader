@@ -112,6 +112,8 @@ python -m http.server 8000                        # 本機預覽 http://localhos
 
 左側章次是 1–81 的數字格子（道經／德經各一組），章旨放在 `title` 裡滑過去看；章首章尾各有「上一章／下一章」，鍵盤 ← → 也能翻。
 
+標題右上角的「收起」鈕會把整個 masthead 縮成一條細列（小字書名與切換鈕同列），閱讀時多出一截高度；做法同精簡模式，只切 `body.compact` 交給 CSS，狀態記在 `localStorage`。
+
 標題下的切換鈕可切「只看原文與通讀」——精簡模式只是加一個 `body.lean` 讓 CSS 把逐句列表、註解、todo 收起來（逐句列表與全章原文重複，精簡時只留後者並放大），DOM 不動，所以切回去不必重新載入；狀態記在 `localStorage`，換章與重新整理都保持。
 
 部署照 bard-comics 那套：GitHub Pages 直接發 `main` 分支根目錄，不走 Actions、不用 build。

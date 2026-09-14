@@ -34,10 +34,39 @@ a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 .masthead {
+  position: relative;
   padding: 2.4rem 1.5rem 1.6rem;
   text-align: center;
   border-bottom: 1px solid var(--rule);
 }
+.head-toggle {
+  position: absolute;
+  top: .7rem;
+  right: .9rem;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: .72rem;
+  letter-spacing: .05em;
+  padding: .15rem .55rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.head-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+/* 收起標題：整個 masthead 縮成一條細列，小字書名與切換鈕同列 */
+body.compact .masthead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  padding: .55rem 3.5rem .55rem 1.5rem;
+}
+body.compact .masthead h1 { font-size: 1.2rem; letter-spacing: .25em; text-indent: .25em; }
+body.compact .masthead .sub { display: none; }
+body.compact .masthead .modebar { margin: 0; }
+body.compact .head-toggle { top: 50%; transform: translateY(-50%); }
 .masthead h1 { margin: 0; font-size: 2.6rem; letter-spacing: .35em; text-indent: .35em; }
 .masthead h1 a { color: inherit; }
 .masthead .sub { margin: .6rem 0 0; color: var(--ink-2); font-size: .9rem; letter-spacing: .1em; }
@@ -228,6 +257,7 @@ footer p { margin: .3rem 0; }
   .chapter-list { grid-template-columns: repeat(7, 1fr); }
   .seg { grid-template-columns: 1fr; gap: .5rem; }
   .masthead h1 { font-size: 2rem; }
+  body.compact .masthead { flex-wrap: wrap; gap: .5rem .9rem; padding-right: 4rem; }
   .seg .orig { font-size: 1.32rem; }
   .full-text { font-size: 1.18rem; }
 }

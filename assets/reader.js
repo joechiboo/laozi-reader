@@ -32,6 +32,24 @@
 
   try { setLean(localStorage.getItem(LEAN_KEY) === '1') } catch (e) { setLean(false) }
 
+  // 收起標題：masthead 縮成一條細列，做法同精簡模式——只切 body.compact，交給 CSS
+  var $head = document.getElementById('head-toggle')
+  var COMPACT_KEY = 'laozi-reader:compact'
+
+  function setCompact(on) {
+    document.body.classList.toggle('compact', on)
+    $head.setAttribute('aria-expanded', on ? 'false' : 'true')
+    $head.textContent = on ? '展開 ﹀' : '收起 ︿'
+    $head.title = on ? '展開標題' : '收起標題'
+    try { localStorage.setItem(COMPACT_KEY, on ? '1' : '0') } catch (e) { /* 無痕視窗等 */ }
+  }
+
+  $head.addEventListener('click', function () {
+    setCompact(!document.body.classList.contains('compact'))
+  })
+
+  try { setCompact(localStorage.getItem(COMPACT_KEY) === '1') } catch (e) { setCompact(false) }
+
   var ENTITIES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) { return ENTITIES[c] })
