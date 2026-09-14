@@ -14,8 +14,8 @@ MVP 先做五章：**1、8、42、60、81**（第一章的道體與方法、第�
 | JSON schema | ✅ 定稿（`data/schema.json`） |
 | 第 1 章資料 | 🟡 起草完成，白話待口述校稿（`meta.status = draft`） |
 | 章資料檢查器 | ✅ `tools/validate.py` |
-| 索引生成 | ⬜ `tools/build_index.py` 未做 |
-| 呈現層 | ⬜ `index.html` 未做 |
+| 索引生成 | ✅ `tools/build_index.py` |
+| 呈現層 | ✅ `index.html`（線上：https://joechiboo.github.io/laozi-reader/） |
 
 ## 底本與版權界線
 
@@ -31,12 +31,12 @@ data/
   schema.json           單章資料的 JSON Schema（draft-07），欄位定義的唯一真相
   chapters/001.json     一章一檔，檔名三位數補零
   keywords.md           受控詞表：同一概念只准一種寫法（待建）
-  index.json            生成物：章目錄 + 關鍵詞反向索引，供前端一次載入（待建，須進版控）
+  index.json            生成物：章目錄 + 關鍵詞反向索引，供前端一次載入（須進版控）
 tools/
   validate.py           照 schema 驗章，另查 schema 管不到的跨欄位一致性
-  build_index.py        掃 data/chapters/ 產 data/index.json（待建）
-assets/                 style.css / reader.js（待建）
-index.html              單頁閱讀器（待建）
+  build_index.py        掃 data/chapters/ 產 data/index.json
+assets/                 style.css / reader.js
+index.html              單頁閱讀器
 ```
 
 ## 資料格式
@@ -77,7 +77,11 @@ pip install -r requirements.txt   # 只有 jsonschema，沒裝也能跑，只是
 
 python tools/validate.py                          # 驗全部章
 python tools/validate.py data/chapters/001.json   # 驗單章
+python tools/build_index.py                       # 改過任何一章後重產 data/index.json
+python -m http.server 8000                        # 本機預覽 http://localhost:8000/
 ```
+
+改資料的順序固定是 **validate → build_index → 預覽**。`data/index.json` 是生成物但必須進版控——GitHub Pages 上沒有它，前端連第一畫面都畫不出來。
 
 `validate.py` 除了 schema 之外，另外查這些 schema 表達不了的事：`text` 與 `segments` 串接是否一致、句 id 是否連號、`notes.ref` 與 `keywords.refs` 是否都指得到句、**關鍵詞標的那一句原文裡是否真的有這個詞**（最後這條在第 1 章就抓到一個誤標）。
 
@@ -85,4 +89,6 @@ python tools/validate.py data/chapters/001.json   # 驗單章
 
 沿用既有 side project 慣例：**純靜態、零框架、零 build**——HTML + CSS + vanilla JS，資料 fetch JSON，Python 腳本只做生成與檢查，部署 GitHub Pages。
 
-呈現層規劃：單頁 `index.html` + hash 路由（`#/1`、`#/1.3` 直接跳句），左側章次索引，右側原文與白話並列、註解隨句展開；前端啟動只載 `data/index.json`，點章才載該章 JSON。
+呈現層：單頁 `index.html` + hash 路由（`#/1` 跳章、`#/1.3` 直接跳句），左側章次索引與關鍵詞，右側原文與白話等寬並列、註解掛在該句底下；啟動只載 `data/index.json`（幾 KB），點到哪一章才載該章 JSON。點關鍵詞會列出它在全書的落點並跳到第一處，原文中該字標色。
+
+部署照 bard-comics 那套：GitHub Pages 直接發 `main` 分支根目錄，不走 Actions、不用 build。

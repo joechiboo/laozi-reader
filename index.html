@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>道德經 — 原文與解析</title>
+  <meta name="description" content="道德經原文與白話逐句並列，關鍵詞跨章跳轉。底本王弼本（公版），白話與註解自撰。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=1">
+</head>
+<body>
+  <header class="masthead">
+    <h1><a href="#/1">道德經</a></h1>
+    <p class="sub">原文與解析 ／ 底本：王弼本</p>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <section class="panel">
+        <h2>章次</h2>
+        <p class="hint" id="progress"></p>
+        <ol class="chapter-list" id="chapter-list"></ol>
+      </section>
+      <section class="panel">
+        <h2>關鍵詞</h2>
+        <p class="hint">點一個詞，看它在全書出現的句子</p>
+        <div class="keyword-cloud" id="keyword-cloud"></div>
+      </section>
+    </aside>
+
+    <main id="main">
+      <p class="loading">載入中…</p>
+    </main>
+  </div>
+
+  <footer>
+    <p>原文為公版王弼本；白話與註解自撰，古注與出土本異文引用皆標出處，不引任何現行譯註本。</p>
+    <p><a href="https://github.com/joechiboo/laozi-reader">GitHub</a></p>
+  </footer>
+
+  <script src="assets/reader.js?v=1"></script>
+</body>
+</html>

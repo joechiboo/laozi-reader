@@ -1,0 +1,168 @@
+/* 道德經閱讀器：紙墨兩色，原文與白話等寬並列。 */
+:root {
+  --paper: #faf7f1;
+  --paper-2: #f2ece1;
+  --ink: #23201c;
+  --ink-2: #6b6357;
+  --rule: #ddd4c5;
+  --accent: #8c3b2e;
+  --accent-soft: #f0e2dd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1b1916;
+    --paper-2: #24211d;
+    --ink: #e8e2d7;
+    --ink-2: #9c9385;
+    --rule: #38332c;
+    --accent: #d08a6e;
+    --accent-soft: #3a2b25;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Noto Serif TC", "Songti TC", serif;
+  line-height: 1.8;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.masthead {
+  padding: 2.4rem 1.5rem 1.6rem;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+}
+.masthead h1 { margin: 0; font-size: 2.6rem; letter-spacing: .35em; text-indent: .35em; }
+.masthead h1 a { color: inherit; }
+.masthead .sub { margin: .6rem 0 0; color: var(--ink-2); font-size: .9rem; letter-spacing: .1em; }
+
+.layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 2.5rem;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ── 左側索引 ───────────────────────────── */
+.panel { margin-bottom: 2.5rem; }
+.panel h2 {
+  margin: 0 0 .4rem;
+  font-size: .85rem;
+  letter-spacing: .25em;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.hint { margin: 0 0 .8rem; font-size: .78rem; color: var(--ink-2); }
+
+.chapter-list { list-style: none; margin: 0; padding: 0; }
+.chapter-list li { border-bottom: 1px dotted var(--rule); }
+.chapter-list a { display: block; padding: .5rem .2rem; color: var(--ink); }
+.chapter-list a:hover { background: var(--paper-2); text-decoration: none; }
+.chapter-list .num { font-weight: 700; margin-right: .5rem; }
+.chapter-list .gist { display: block; font-size: .78rem; color: var(--ink-2); line-height: 1.5; }
+.chapter-list li.active a { color: var(--accent); background: var(--accent-soft); }
+.chapter-list li.todo { padding: .5rem .2rem; color: var(--rule); font-size: .85rem; }
+
+.keyword-cloud { display: flex; flex-wrap: wrap; gap: .4rem; }
+.kw {
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: .15rem .6rem;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.kw:hover, .kw.on { border-color: var(--accent); color: var(--accent); }
+.kw .n { font-size: .7rem; color: var(--ink-2); margin-left: .3rem; }
+
+/* ── 右側正文 ───────────────────────────── */
+.chapter-head { border-bottom: 2px solid var(--ink); padding-bottom: .8rem; margin-bottom: 1.6rem; }
+.chapter-head h2 { margin: 0; font-size: 1.9rem; letter-spacing: .1em; }
+.chapter-head .meta { margin: .4rem 0 0; font-size: .82rem; color: var(--ink-2); }
+.badge {
+  display: inline-block;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  padding: .1rem .5rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 2px;
+  margin-left: .6rem;
+  vertical-align: .15em;
+}
+
+.full-text {
+  background: var(--paper-2);
+  padding: 1.2rem 1.4rem;
+  font-size: 1.08rem;
+  letter-spacing: .04em;
+  margin-bottom: 2.2rem;
+}
+
+.seg {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.6rem;
+  padding: 1rem 0;
+  border-bottom: 1px dotted var(--rule);
+  scroll-margin-top: 1rem;
+}
+.seg .orig { font-size: 1.22rem; letter-spacing: .05em; }
+.seg .orig .sid { font-size: .68rem; color: var(--ink-2); letter-spacing: .05em; margin-right: .5rem; vertical-align: .35em; }
+.seg .plain { color: var(--ink-2); }
+.seg .alt { margin-top: .5rem; font-size: .85rem; color: var(--ink-2); border-left: 2px solid var(--rule); padding-left: .7rem; }
+.seg.hit { background: var(--accent-soft); }
+.seg mark { background: none; color: var(--accent); font-weight: 700; }
+
+.notes { grid-column: 1 / -1; margin: .2rem 0 0; padding: 0; list-style: none; }
+.notes li { font-size: .86rem; color: var(--ink-2); padding: .35rem 0 .35rem .9rem; border-left: 2px solid var(--rule); margin-top: .4rem; }
+.notes .type {
+  font-size: .68rem;
+  letter-spacing: .1em;
+  border: 1px solid var(--rule);
+  padding: 0 .35rem;
+  margin-right: .5rem;
+  color: var(--ink-2);
+}
+.notes .term { color: var(--ink); font-weight: 700; margin-right: .4rem; }
+.notes .source { color: var(--ink-2); font-size: .78rem; }
+.notes .see { margin-left: .3rem; }
+
+.readthrough { margin-top: 2.4rem; }
+.readthrough h3 { font-size: .85rem; letter-spacing: .25em; color: var(--ink-2); font-weight: 500; margin-bottom: .6rem; }
+.readthrough p { margin: 0; }
+
+.todo-box { margin-top: 2.4rem; font-size: .82rem; color: var(--ink-2); border: 1px dashed var(--rule); padding: .8rem 1rem; }
+.todo-box ul { margin: .4rem 0 0; padding-left: 1.2rem; }
+
+.kw-result { margin-bottom: 2rem; background: var(--paper-2); padding: 1rem 1.2rem; }
+.kw-result h3 { margin: 0 0 .5rem; font-size: 1rem; }
+.kw-result ul { margin: 0; padding-left: 1.2rem; }
+.kw-result li { font-size: .9rem; }
+.kw-result .close { float: right; }
+
+.loading { color: var(--ink-2); }
+
+footer {
+  border-top: 1px solid var(--rule);
+  padding: 1.6rem 1.5rem 3rem;
+  text-align: center;
+  font-size: .78rem;
+  color: var(--ink-2);
+}
+footer p { margin: .3rem 0; }
+
+@media (max-width: 860px) {
+  .layout { grid-template-columns: 1fr; gap: 1.5rem; }
+  .sidebar { order: 2; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+  .seg { grid-template-columns: 1fr; gap: .5rem; }
+  .masthead h1 { font-size: 2rem; }
+}

@@ -1,0 +1,109 @@
+{
+  "generated": "2026-09-14",
+  "total": 1,
+  "chapters": [
+    {
+      "chapter": 1,
+      "part": "道經",
+      "gist": "道說不盡、名叫不全；從無與有兩頭看同一件事",
+      "status": "draft",
+      "segments": 7,
+      "notes": 10
+    }
+  ],
+  "keywords": [
+    {
+      "term": "名",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.2",
+            "1.3"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "妙",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.4",
+            "1.7"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "常",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.1",
+            "1.2",
+            "1.4",
+            "1.5"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "有",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.3",
+            "1.5"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "無",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.3",
+            "1.4"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "玄",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.6",
+            "1.7"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "道",
+      "chapters": 1,
+      "refs": [
+        {
+          "chapter": 1,
+          "segments": [
+            "1.1"
+          ],
+          "sense": "兼指道體與言說，見 n1"
+        }
+      ]
+    }
+  ]
+}
