@@ -12,7 +12,8 @@ MVP 先做五章：**1、8、42、60、81**（第一章的道體與方法、第�
 | 項目 | 狀態 |
 | --- | --- |
 | JSON schema | ✅ 定稿（`data/schema.json`） |
-| 第 1 章資料 | 🟡 起草完成，白話待口述校稿（`meta.status = draft`） |
+| 章資料 | 🟡 2 / 5 章（第 1、42 章），白話皆待口述校稿（`meta.status = draft`） |
+| 受控詞表 | ✅ `data/keywords.md` |
 | 章資料檢查器 | ✅ `tools/validate.py` |
 | 索引生成 | ✅ `tools/build_index.py` |
 | 呈現層 | ✅ `index.html`（線上：https://joechiboo.github.io/laozi-reader/） |
@@ -30,7 +31,7 @@ MVP 先做五章：**1、8、42、60、81**（第一章的道體與方法、第�
 data/
   schema.json           單章資料的 JSON Schema（draft-07），欄位定義的唯一真相
   chapters/001.json     一章一檔，檔名三位數補零
-  keywords.md           受控詞表：同一概念只准一種寫法（待建）
+  keywords.md           受控詞表：同一概念只准一種寫法，新增章節前先查
   index.json            生成物：章目錄 + 關鍵詞反向索引，供前端一次載入（須進版控）
 tools/
   validate.py           照 schema 驗章，另查 schema 管不到的跨欄位一致性
