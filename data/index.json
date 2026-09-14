@@ -368,7 +368,8 @@
       "gist": "下士聞道大笑之；明道若昧，大器晚成，道隱無名",
       "status": "draft",
       "segments": 5,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 42,
@@ -376,7 +377,8 @@
       "gist": "道生萬物的次第；陰陽沖和，損益相反而相成",
       "status": "draft",
       "segments": 6,
-      "notes": 11
+      "notes": 11,
+      "quiz": true
     },
     {
       "chapter": 43,
@@ -384,7 +386,8 @@
       "gist": "至柔馳騁至堅，無有入無間；不言之教，無為之益",
       "status": "draft",
       "segments": 3,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 44,
@@ -392,7 +395,8 @@
       "gist": "名與身孰親？甚愛必大費，多藏必厚亡；知足不辱，知止不殆",
       "status": "draft",
       "segments": 3,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 45,
@@ -400,7 +404,8 @@
       "gist": "大成若缺，大盈若沖，大巧若拙；清靜為天下正",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 46,
@@ -408,7 +413,8 @@
       "gist": "天下有道卻走馬以糞；禍莫大於不知足，知足之足常足",
       "status": "draft",
       "segments": 3,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 47,
@@ -416,7 +422,8 @@
       "gist": "不出戶知天下；其出彌遠，其知彌少；不行而知，不為而成",
       "status": "draft",
       "segments": 3,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 48,
@@ -424,7 +431,8 @@
       "gist": "為學日益，為道日損；損到無為，取天下常以無事",
       "status": "draft",
       "segments": 4,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 49,
@@ -432,7 +440,8 @@
       "gist": "聖人無常心，以百姓心為心；不善者吾亦善之",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 50,
@@ -440,7 +449,8 @@
       "gist": "出生入死；善攝生者陸行不遇兕虎，以其無死地",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 51,
