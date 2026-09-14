@@ -638,7 +638,8 @@
       "gist": "知不知，上；夫唯病病，是以不病",
       "status": "draft",
       "segments": 3,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 72,
@@ -646,7 +647,8 @@
       "gist": "民不畏威則大威至；聖人自知不自見，自愛不自貴",
       "status": "draft",
       "segments": 3,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 73,
@@ -654,7 +656,8 @@
       "gist": "勇於敢則殺，勇於不敢則活；天網恢恢，疏而不失",
       "status": "draft",
       "segments": 3,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 74,
@@ -662,7 +665,8 @@
       "gist": "民不畏死，奈何以死懼之；代大匠斲者，希有不傷其手",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 75,
@@ -670,7 +674,8 @@
       "gist": "民之饑以其上食稅之多；三句都把原因指向「其上」",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 76,
@@ -678,7 +683,8 @@
       "gist": "柔弱者生之徒，堅強者死之徒；強大處下，柔弱處上",
       "status": "draft",
       "segments": 5,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 77,
@@ -686,7 +692,8 @@
       "gist": "天之道損有餘而補不足，人之道損不足以奉有餘",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 78,
@@ -694,7 +701,8 @@
       "gist": "天下莫柔弱於水，而攻堅強者莫之能勝；正言若反",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 79,
@@ -702,7 +710,8 @@
       "gist": "和大怨必有餘怨；聖人執左契而不責於人；天道無親，常與善人",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 80,
@@ -710,7 +719,8 @@
       "gist": "小國寡民；甘其食美其服；鄰國相望而民至老死不相往來",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 81,
@@ -718,7 +728,8 @@
       "gist": "全書收束：信美、善辯、知博三組相反，終於利而不害、為而不爭",
       "status": "draft",
       "segments": 5,
-      "notes": 7
+      "notes": 7,
+      "quiz": true
     }
   ],
   "keywords": [

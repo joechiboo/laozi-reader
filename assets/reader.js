@@ -132,6 +132,14 @@
     return Object.keys(passSet).filter(function (k) { return passSet[k] && Number(k) !== GENERAL }).length
   }
 
+  function shuffle(a) {                      // Fisher–Yates
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1))
+      var t = a[i]; a[i] = a[j]; a[j] = t
+    }
+    return a
+  }
+
   // 舊版把作答直接存成 {題號: 是否}，沒有抽題紀錄；讀到舊格式就地補上 draw
   function chapState(ch, questions) {
     var st = chapAnswers[ch]
@@ -139,13 +147,20 @@
     if (st && !st.ans) st = { draw: Object.keys(st), ans: st }
     else st = { draw: null, ans: {} }
     if (!st.draw || !st.draw.length) {
-      var ids = questions.map(function (x) { return x.id })
-      // Fisher–Yates，抽 DRAW 題；題庫不足就全出
-      for (var i = ids.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1))
-        var t = ids[i]; ids[i] = ids[j]; ids[j] = t
-      }
-      st.draw = ids.slice(0, Math.min(DRAW, ids.length))
+      // 分層抽題：是與否各至少抽 2 題（題庫不足就有多少算多少）。
+      // 不這樣做的話，5是2否的題庫有機會抽出 5 題全是「是」，
+      // 一路猜「是」就能通過——那個「考核通過」標記就不值錢了。
+      var yes = questions.filter(function (x) { return x.answer }).map(function (x) { return x.id })
+      var no = questions.filter(function (x) { return !x.answer }).map(function (x) { return x.id })
+      shuffle(yes); shuffle(no)
+      var MIN = 2
+      var pick = yes.splice(0, Math.min(MIN, yes.length))
+        .concat(no.splice(0, Math.min(MIN, no.length)))
+      var rest = yes.concat(no)
+      shuffle(rest)
+      pick = pick.concat(rest.slice(0, Math.max(0, Math.min(DRAW, questions.length) - pick.length)))
+      shuffle(pick)
+      st.draw = pick
     }
     chapAnswers[ch] = st
     return st
