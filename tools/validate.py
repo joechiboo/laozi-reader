@@ -124,7 +124,7 @@ def check_quiz(all_segs):
 
 
 def check_chapter_quiz(all_segs):
-    """本章小考：每章五題，ref 必須指到「本章」的句（跨章就不叫本章小考了）。"""
+    """本章小考：每章至少五題（多的供隨機抽），ref 必須指到「本章」的句。"""
     qdir = ROOT / "data" / "quiz"
     if not qdir.exists():
         return []
@@ -134,8 +134,8 @@ def check_chapter_quiz(all_segs):
         ch = q.get("chapter")
         if f.stem != f"{ch:03d}":
             errs.append(f"{f.name}：檔名與 chapter 不符")
-        if len(q["questions"]) != 5:
-            errs.append(f"{f.name}：應為 5 題，實為 {len(q['questions'])} 題")
+        if len(q["questions"]) < 5:
+            errs.append(f"{f.name}：至少要 5 題，實為 {len(q['questions'])} 題")
         ids = [x["id"] for x in q["questions"]]
         if len(set(ids)) != len(ids):
             errs.append(f"{f.name}：題目 id 有重複")

@@ -196,7 +196,7 @@ body.lean .full-text { font-size: 1.45rem; line-height: 2; margin-bottom: 2.6rem
   margin: 0 0 1rem;
 }
 .chapnav .cur { letter-spacing: .15em; }
-.chapnav .done { color: var(--accent); font-size: .8rem; margin: 0 .15rem; }
+.done { color: var(--accent); font-size: .8rem; margin: 0 .15rem; }
 .chapnav + .chapter-head { margin-top: 0; }
 .readthrough + .chapnav, .todo-box + .chapnav { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 
@@ -348,6 +348,7 @@ body.lean .full-text { font-size: 1.45rem; line-height: 2; margin-bottom: 2.6rem
 body.lean .chapquiz { display: none; }
 
 /* ── 綜合小測驗 ────────────────────────── */
+.quiz-score .pass { color: var(--accent); letter-spacing: .05em; }
 .quiz-score {
   font-size: .85rem;
   color: var(--ink-2);

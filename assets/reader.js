@@ -101,6 +101,9 @@
   var PASS_KEY = 'laozi-reader:pass'
   var CHAPQUIZ_KEY = 'laozi-reader:chapquiz'
   var PASS_NEED = 4
+  var DRAW = 5                 // 每次考幾題（題庫可以比這個多，多的部分隨機抽）
+  var GENERAL_NEED = 8         // 綜合小測驗十題，答對八題算通過
+  var GENERAL = 0              // 綜合測驗在 passSet 裡借用章號 0，免得再開一把 key
   var passSet = {}
   var chapAnswers = {}
   var chapQuiz = {}
@@ -125,7 +128,35 @@
   }
 
   function passCount() {
-    return Object.keys(passSet).filter(function (k) { return passSet[k] }).length
+    // 章數不算綜合測驗那一筆
+    return Object.keys(passSet).filter(function (k) { return passSet[k] && Number(k) !== GENERAL }).length
+  }
+
+  // 舊版把作答直接存成 {題號: 是否}，沒有抽題紀錄；讀到舊格式就地補上 draw
+  function chapState(ch, questions) {
+    var st = chapAnswers[ch]
+    if (st && st.ans && st.draw) return st
+    if (st && !st.ans) st = { draw: Object.keys(st), ans: st }
+    else st = { draw: null, ans: {} }
+    if (!st.draw || !st.draw.length) {
+      var ids = questions.map(function (x) { return x.id })
+      // Fisher–Yates，抽 DRAW 題；題庫不足就全出
+      for (var i = ids.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1))
+        var t = ids[i]; ids[i] = ids[j]; ids[j] = t
+      }
+      st.draw = ids.slice(0, Math.min(DRAW, ids.length))
+    }
+    chapAnswers[ch] = st
+    return st
+  }
+
+  function drawnQuestions(ch) {
+    var all = chapQuiz[ch].questions
+    var st = chapState(ch, all)
+    return st.draw.map(function (id) {
+      return all.filter(function (x) { return x.id === id })[0]
+    }).filter(Boolean)
   }
 
   function hasQuiz(ch) {
@@ -309,7 +340,7 @@
     try { localStorage.setItem(QUIZ_KEY, JSON.stringify(answers)) } catch (e) { /* 無痕視窗等 */ }
   }
 
-  function scoreLine() {
+  function generalResult() {
     var done = 0, right = 0
     quiz.questions.forEach(function (q) {
       if (typeof answers[q.id] === 'boolean') {
@@ -317,8 +348,32 @@
         if (answers[q.id] === q.answer) right++
       }
     })
-    return '已答 ' + done + ' / ' + quiz.questions.length +
-      (done ? '，答對 ' + right + ' 題' : '')
+    return { done: done, right: right, total: quiz.questions.length }
+  }
+
+  function scoreLine() {
+    var r = generalResult()
+    if (r.done < r.total) {
+      return '已答 ' + r.done + ' / ' + r.total + (r.done ? '，答對 ' + r.right + ' 題' : '') +
+        '（答滿 ' + r.total + ' 題才結算）'
+    }
+    if (r.right >= GENERAL_NEED) {
+      return '<strong class="pass">答對 ' + r.right + ' / ' + r.total + '　綜合測驗通過 ✓</strong>'
+    }
+    return '答對 ' + r.right + ' / ' + r.total + '　差一點（要 ' + GENERAL_NEED + ' 題才算通過）'
+  }
+
+  // 通過與否由答題結果決定；標記借 passSet 的章號 0，順便讓標題那排的連結掛上 ✓
+  function gradeGeneral() {
+    var r = generalResult()
+    passSet[GENERAL] = r.done === r.total && r.right >= GENERAL_NEED
+    saveQuizState()
+    var link = document.querySelector('.quiz-link')
+    if (link) {
+      var tick = link.querySelector('.done')
+      if (passSet[GENERAL] && !tick) link.insertAdjacentHTML('beforeend', '<span class="done">✓</span>')
+      if (!passSet[GENERAL] && tick) tick.remove()
+    }
   }
 
   // 一題的內容（作答前只有兩個鈕，答完才長出解說與原文連結）
@@ -368,26 +423,26 @@
     if (quiz) { renderQuiz(); return }
     fetch('data/quiz.json')
       .then(function (r) { return r.json() })
-      .then(function (d) { quiz = d; loadAnswers(); renderQuiz() })
+      .then(function (d) { quiz = d; loadAnswers(); gradeGeneral(); renderQuiz() })
       .catch(function () { $main.innerHTML = '<p class="loading">載不到 data/quiz.json。</p>' })
   }
 
   // ── 本章小考 ──────────────────────────────
   function chapQuizResult(ch) {
-    var q = chapQuiz[ch]
-    var mine = chapAnswers[ch] || {}
+    var qs = drawnQuestions(ch)
+    var mine = chapAnswers[ch].ans
     var done = 0, right = 0
-    q.questions.forEach(function (x) {
+    qs.forEach(function (x) {
       if (typeof mine[x.id] === 'boolean') {
         done++
         if (mine[x.id] === x.answer) right++
       }
     })
-    return { done: done, right: right, total: q.questions.length }
+    return { done: done, right: right, total: qs.length }
   }
 
   function renderChapQuestion(ch, x, i) {
-    var mine = (chapAnswers[ch] || {})[x.id]
+    var mine = chapAnswers[ch].ans[x.id]
     var answered = typeof mine === 'boolean'
     var html = '<p class="q-stmt"><span class="q-no">' + (i + 1) + '</span>' + esc(x.statement) + '</p>'
     html += '<p class="q-btns">' +
@@ -411,7 +466,7 @@
     var line
     if (r.done < r.total) {
       line = '已答 ' + r.done + ' / ' + r.total + '　答對 ' + r.right + ' 題（答滿五題才結算）'
-    } else if (r.right >= PASS_NEED) {
+    } else if (r.right >= Math.min(PASS_NEED, r.total)) {
       line = '<strong class="pass">答對 ' + r.right + ' / ' + r.total + '　考核通過 ✓</strong>'
     } else {
       line = '答對 ' + r.right + ' / ' + r.total + '　差一點（要 ' + PASS_NEED + ' 題才算通過），回頭看看原文再重做'
@@ -424,7 +479,7 @@
   function gradeChapQuiz(ch) {
     var r = chapQuizResult(ch)
     var was = !!passSet[ch]
-    var now = r.done === r.total && r.right >= PASS_NEED
+    var now = r.done === r.total && r.right >= Math.min(PASS_NEED, r.total)
     passSet[ch] = now
     saveQuizState()
     if (was !== now) {
@@ -443,11 +498,14 @@
   function renderChapQuiz(ch) {
     var box = document.getElementById('chapquiz')
     if (!box) return
-    var q = chapQuiz[ch]
+    var pool = chapQuiz[ch].questions.length
+    var n = drawnQuestions(ch).length
     box.innerHTML = '<h3>本章小考</h3>' +
-      '<p class="cq-intro">五題是非題，答對 ' + PASS_NEED + ' 題即通過。答完會告訴你原文在哪一句。</p>' +
+      '<p class="cq-intro">' + n + ' 題是非題，答對 ' + Math.min(PASS_NEED, n) + ' 題即通過；' +
+      (pool > n ? '題庫共 ' + pool + ' 題，每次隨機抽 ' + n + ' 題，重做會換一批。' : '答完會告訴你原文在哪一句。') +
+      '</p>' +
       '<ol class="quiz-list">' +
-      q.questions.map(function (x, i) {
+      drawnQuestions(ch).map(function (x, i) {
         return '<li class="qitem" id="cq-' + ch + '-' + x.id + '">' +
           renderChapQuestion(ch, x, i) + '</li>'
       }).join('') +
@@ -513,14 +571,14 @@
     if (cq) {
       var ch = Number(cq.dataset.cq)
       var qid = cq.dataset.qid
-      var i = -1
-      chapQuiz[ch].questions.forEach(function (x, n) { if (x.id === qid) i = n })
-      if (i < 0) return
-      if (!chapAnswers[ch]) chapAnswers[ch] = {}
-      chapAnswers[ch][qid] = cq.dataset.v === '1'
+      if (!chapQuiz[ch]) return
+      chapState(ch, chapQuiz[ch].questions).ans[qid] = cq.dataset.v === '1'
       saveQuizState()
+      var drawn = drawnQuestions(ch)
+      var di = -1
+      drawn.forEach(function (x, n) { if (x.id === qid) di = n })
       document.getElementById('cq-' + ch + '-' + qid).innerHTML =
-        renderChapQuestion(ch, chapQuiz[ch].questions[i], i)
+        renderChapQuestion(ch, drawn[di], di)
       gradeChapQuiz(ch)
       var foot = document.querySelector('.cq-foot')
       if (foot) foot.outerHTML = chapQuizFoot(ch)
@@ -555,13 +613,15 @@
       answers[qid] = pick.dataset.v === '1'
       saveAnswers()
       document.getElementById('qi-' + qid).innerHTML = renderQuestion(quiz.questions[i], i)
-      document.getElementById('quiz-score').textContent = scoreLine()
+      gradeGeneral()
+      document.getElementById('quiz-score').innerHTML = scoreLine()
       return
     }
 
     if (e.target.classList && e.target.classList.contains('quiz-reset')) {
       answers = {}
       saveAnswers()
+      gradeGeneral()
       renderQuiz()
     }
   })
@@ -587,6 +647,10 @@
       index = d
       loadRead()
       loadQuizState()
+      if (passSet[GENERAL]) {
+        var ql = document.querySelector('.quiz-link')
+        if (ql) ql.insertAdjacentHTML('beforeend', '<span class="done">✓</span>')
+      }
       renderSidebar()
       route()
     })
