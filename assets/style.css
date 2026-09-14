@@ -62,10 +62,9 @@ a:hover { text-decoration: underline; }
 }
 
 /* 精簡模式：只留原文與全章通讀，白話與註解收起來 */
-body.lean .seg { grid-template-columns: 1fr; padding: .7rem 0; }
-body.lean .seg .plain,
-body.lean .notes,
+body.lean .seg,
 body.lean .todo-box { display: none; }
+body.lean .full-text { font-size: 1.45rem; line-height: 2; margin-bottom: 2.6rem; }
 
 .layout {
   display: grid;
@@ -87,14 +86,36 @@ body.lean .todo-box { display: none; }
 }
 .hint { margin: 0 0 .8rem; font-size: .82rem; color: var(--ink-2); }
 
-.chapter-list { list-style: none; margin: 0; padding: 0; }
-.chapter-list li { border-bottom: 1px dotted var(--rule); }
-.chapter-list a { display: block; padding: .5rem .2rem; color: var(--ink); }
-.chapter-list a:hover { background: var(--paper-2); text-decoration: none; }
-.chapter-list .num { font-weight: 700; margin-right: .5rem; }
-.chapter-list .gist { display: block; font-size: .84rem; color: var(--ink-2); line-height: 1.5; }
-.chapter-list li.active a { color: var(--accent); background: var(--accent-soft); }
-.chapter-list li.todo { padding: .5rem .2rem; color: var(--rule); font-size: .85rem; }
+.chapter-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: .25rem;
+}
+.chapter-list li.part {
+  grid-column: 1 / -1;
+  padding: .9rem .1rem .25rem;
+  font-size: .78rem;
+  letter-spacing: .3em;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: .2rem;
+}
+.chapter-list li.part:first-child { padding-top: .1rem; }
+.chapter-list a {
+  display: block;
+  text-align: center;
+  padding: .3rem 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  color: var(--ink);
+  font-size: .95rem;
+  line-height: 1.3;
+}
+.chapter-list a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.chapter-list li.active a { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 
 .keyword-cloud { display: flex; flex-wrap: wrap; gap: .4rem; }
 .kw {
@@ -111,6 +132,19 @@ body.lean .todo-box { display: none; }
 .kw .n { font-size: .7rem; color: var(--ink-2); margin-left: .3rem; }
 
 /* ── 右側正文 ───────────────────────────── */
+.chapnav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: .9rem;
+  color: var(--ink-2);
+  margin: 0 0 1rem;
+}
+.chapnav .cur { letter-spacing: .15em; }
+.chapnav + .chapter-head { margin-top: 0; }
+.readthrough + .chapnav, .todo-box + .chapnav { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+
 .chapter-head { border-bottom: 2px solid var(--ink); padding-bottom: .8rem; margin-bottom: 1.6rem; }
 .chapter-head h2 { margin: 0; font-size: 1.9rem; letter-spacing: .1em; }
 .chapter-head .meta { margin: .4rem 0 0; font-size: .82rem; color: var(--ink-2); }
@@ -191,6 +225,7 @@ footer p { margin: .3rem 0; }
   html { font-size: 106%; }
   .layout { grid-template-columns: 1fr; gap: 1.5rem; }
   .sidebar { order: 2; border-top: 1px solid var(--rule); padding-top: 1.5rem; }
+  .chapter-list { grid-template-columns: repeat(7, 1fr); }
   .seg { grid-template-columns: 1fr; gap: .5rem; }
   .masthead h1 { font-size: 2rem; }
   .seg .orig { font-size: 1.32rem; }

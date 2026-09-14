@@ -56,12 +56,36 @@
       .then(function (d) { cache[n] = d; return d })
   }
 
+  // 前後章：照 index.chapters 的順序找鄰居（章沒建齊時會自動跳過缺的）
+  function neighbors(ch) {
+    var list = index.chapters.map(function (c) { return c.chapter })
+    var i = list.indexOf(ch)
+    return {
+      prev: i > 0 ? list[i - 1] : null,
+      next: i >= 0 && i < list.length - 1 ? list[i + 1] : null
+    }
+  }
+
+  function renderNav(ch) {
+    var nb = neighbors(ch)
+    return '<nav class="chapnav">' +
+      (nb.prev ? '<a href="#/' + nb.prev + '">← 第 ' + nb.prev + ' 章</a>' : '<span></span>') +
+      '<span class="cur">第 ' + ch + ' 章</span>' +
+      (nb.next ? '<a href="#/' + nb.next + '">第 ' + nb.next + ' 章 →</a>' : '<span></span>') +
+      '</nav>'
+  }
+
   function renderSidebar() {
+    // 81 章排成數字格子，道經／德經各一組；章旨放在 title 裡，滑過去看
+    var lastPart = null
     var html = index.chapters.map(function (c) {
-      return '<li data-ch="' + c.chapter + '"><a href="#/' + c.chapter + '">' +
-        '<span class="num">' + c.chapter + '</span>' +
-        (c.status === 'draft' ? '<span class="badge">草稿</span>' : '') +
-        '<span class="gist">' + esc(c.gist) + '</span></a></li>'
+      var head = ''
+      if (c.part !== lastPart) {
+        head = '<li class="part">' + esc(c.part) + '</li>'
+        lastPart = c.part
+      }
+      return head + '<li data-ch="' + c.chapter + '">' +
+        '<a href="#/' + c.chapter + '" title="' + esc(c.gist) + '">' + c.chapter + '</a></li>'
     }).join('')
     $list.innerHTML = html
     $progress.textContent = index.chapters.length + ' / ' + TOTAL + ' 章已有資料'
@@ -112,6 +136,7 @@
 
     if (activeTerm) html += renderKeywordResult(activeTerm)
 
+    html += renderNav(d.chapter)
     html += '<div class="chapter-head">' +
       '<h2>第 ' + d.chapter + ' 章' + (draft ? '<span class="badge">白話待校稿</span>' : '') + '</h2>' +
       '<p class="meta">' + esc(d.part) + ' ／ ' + esc(d.meta.base || '王弼本') +
@@ -136,6 +161,8 @@
         d.meta.todo.map(function (t) { return '<li>' + esc(t) + '</li>' }).join('') +
         '</ul></div>'
     }
+
+    html += renderNav(d.chapter)
 
     $main.innerHTML = html
 
@@ -198,6 +225,19 @@
   })
 
   window.addEventListener('hashchange', route)
+
+  // 鍵盤 ← → 翻章（焦點在輸入框時不搶）
+  document.addEventListener('keydown', function (e) {
+    if (!index || e.altKey || e.ctrlKey || e.metaKey) return
+    var tag = (e.target && e.target.tagName) || ''
+    if (tag === 'INPUT' || tag === 'TEXTAREA') return
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+    var ch = parseInt((location.hash || '').replace(/^#\/?/, ''), 10)
+    if (!ch) return
+    var nb = neighbors(ch)
+    var to = e.key === 'ArrowLeft' ? nb.prev : nb.next
+    if (to) location.hash = '#/' + to
+  })
 
   fetch('data/index.json')
     .then(function (r) { return r.json() })

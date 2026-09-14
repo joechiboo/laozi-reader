@@ -61,8 +61,7 @@
     }
   ],
   "keywords": [
-    { "term": "天下", "refs": ["61.1"] },
-    { "term": "常", "refs": ["61.2"] }
+    { "term": "天下", "refs": ["61.1"] }
   ],
   "meta": {
     "status": "draft",
