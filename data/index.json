@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-14",
+  "generated": "2026-09-15",
   "total": 81,
   "chapters": [
     {
@@ -278,7 +278,8 @@
       "gist": "兵者不祥之器，不得已而用之；戰勝以喪禮處之",
       "status": "draft",
       "segments": 5,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 32,
@@ -286,7 +287,8 @@
       "gist": "道常無名，樸雖小天下莫能臣；始制有名，知止不殆",
       "status": "draft",
       "segments": 5,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 33,
@@ -294,7 +296,8 @@
       "gist": "自知者明，自勝者強，知足者富；死而不亡者壽",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 34,
@@ -302,7 +305,8 @@
       "gist": "大道氾兮；衣養萬物而不為主，可名於小，亦可名為大",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 35,
@@ -310,7 +314,8 @@
       "gist": "執大象天下往；道之出口淡乎其無味，用之不足既",
       "status": "draft",
       "segments": 3,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 36,
@@ -318,7 +323,8 @@
       "gist": "將欲歙之必固張之，是謂微明；柔弱勝剛強",
       "status": "draft",
       "segments": 4,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 37,
@@ -326,7 +332,8 @@
       "gist": "道常無為而無不為；侯王守之，萬物自化，天下自定",
       "status": "draft",
       "segments": 5,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 38,
@@ -334,7 +341,8 @@
       "gist": "德經首章：上德不德；失道而後德，失德而後仁義禮",
       "status": "draft",
       "segments": 8,
-      "notes": 7
+      "notes": 7,
+      "quiz": true
     },
     {
       "chapter": 39,
@@ -342,7 +350,8 @@
       "gist": "得一者全，失一者裂；貴以賤為本，高以下為基",
       "status": "draft",
       "segments": 6,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 40,
@@ -350,7 +359,8 @@
       "gist": "反者道之動，弱者道之用；有生於無",
       "status": "draft",
       "segments": 2,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 41,
