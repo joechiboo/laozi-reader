@@ -98,6 +98,31 @@ def check_see(d, all_segs, seg_text, built, pending, warns):
     return errs
 
 
+def check_quiz(all_segs):
+    """小測驗：每題的 ref 必須指得到全書某一句，答案必須是布林，id 不重複。
+
+    測驗題與章資料是分開的兩個檔，最容易發生的錯就是改了斷句之後，
+    題目的 ref 變成孤兒——所以這裡一起驗。
+    """
+    path = ROOT / "data" / "quiz.json"
+    if not path.exists():
+        return []
+    errs = []
+    q = json.loads(path.read_text(encoding="utf-8"))
+    ids = [x["id"] for x in q["questions"]]
+    if len(set(ids)) != len(ids):
+        errs.append("題目 id 有重複")
+    for x in q["questions"]:
+        if not isinstance(x.get("answer"), bool):
+            errs.append(f"{x['id']} 的 answer 不是 true/false")
+        for field in ("statement", "explain", "ref"):
+            if not x.get(field):
+                errs.append(f"{x['id']} 缺少 {field}")
+        if x.get("ref") and x["ref"] not in all_segs:
+            errs.append(f"{x['id']} 的 ref {x['ref']} 指不到全書任何一句")
+    return errs
+
+
 def main():
     schema_check = None
     try:
@@ -138,6 +163,15 @@ def main():
         else:
             print(f"[ OK ] {f.name}")
     print(f"\n{len(files)} 章，{bad} 章有問題")
+
+    quiz_errs = check_quiz(all_segs)
+    if quiz_errs:
+        bad += 1
+        print("\n[FAIL] quiz.json")
+        for e in quiz_errs:
+            print(f"  - {e}")
+    else:
+        print("[ OK ] quiz.json")
     if pending:
         print("\n互見錨點指向尚未建立的章（不算錯，那幾章建好後會自動開始檢查）：")
         for line in pending:

@@ -199,9 +199,88 @@
     }
   }
 
-  // #/1 或 #/1.3
+  // ── 小測驗 ────────────────────────────────
+  // 作答結果只存在瀏覽器（localStorage），不上傳也不跨裝置。
+  var QUIZ_KEY = 'laozi-reader:quiz'
+  var quiz = null
+  var answers = {}
+
+  function loadAnswers() {
+    try { answers = JSON.parse(localStorage.getItem(QUIZ_KEY) || '{}') || {} }
+    catch (e) { answers = {} }
+  }
+
+  function saveAnswers() {
+    try { localStorage.setItem(QUIZ_KEY, JSON.stringify(answers)) } catch (e) { /* 無痕視窗等 */ }
+  }
+
+  function scoreLine() {
+    var done = 0, right = 0
+    quiz.questions.forEach(function (q) {
+      if (typeof answers[q.id] === 'boolean') {
+        done++
+        if (answers[q.id] === q.answer) right++
+      }
+    })
+    return '已答 ' + done + ' / ' + quiz.questions.length +
+      (done ? '，答對 ' + right + ' 題' : '')
+  }
+
+  // 一題的內容（作答前只有兩個鈕，答完才長出解說與原文連結）
+  function renderQuestion(q, i) {
+    var mine = answers[q.id]
+    var answered = typeof mine === 'boolean'
+    var html = '<p class="q-stmt"><span class="q-no">' + (i + 1) + '</span>' + esc(q.statement) + '</p>'
+
+    html += '<p class="q-btns">' +
+      '<button type="button" data-q="' + q.id + '" data-v="1"' +
+      (answered && mine === true ? ' class="picked"' : '') + '>是</button>' +
+      '<button type="button" data-q="' + q.id + '" data-v="0"' +
+      (answered && mine === false ? ' class="picked"' : '') + '>否</button>' +
+      '</p>'
+
+    if (answered) {
+      var ok = mine === q.answer
+      html += '<p class="q-verdict ' + (ok ? 'ok' : 'ng') + '">' +
+        (ok ? '答對了' : '答錯了') + '　正解：' + (q.answer ? '是' : '否') + '</p>' +
+        '<p class="q-explain">' + esc(q.explain) + '</p>' +
+        '<p class="q-ref">原文在 <a href="#/' + esc(q.ref) + '">' + esc(q.ref) + '</a></p>'
+    }
+    return html
+  }
+
+  function renderQuiz() {
+    var html = '<div class="quiz">' +
+      '<div class="chapter-head"><h2>' + esc(quiz.title) + '</h2>' +
+      '<p class="meta">' + esc(quiz.intro) + '</p></div>' +
+      '<p class="quiz-score" id="quiz-score">' + scoreLine() + '</p>' +
+      '<ol class="quiz-list">' +
+      quiz.questions.map(function (q, i) {
+        return '<li class="qitem" id="qi-' + q.id + '">' + renderQuestion(q, i) + '</li>'
+      }).join('') +
+      '</ol>' +
+      '<p class="quiz-foot">' +
+      '<button type="button" class="quiz-reset">清空作答</button>' +
+      '<a href="#/1">回到第 1 章</a></p>' +
+      '</div>'
+
+    $main.innerHTML = html
+    Array.prototype.forEach.call($list.children, function (li) { li.classList.remove('active') })
+    window.scrollTo(0, 0)
+  }
+
+  function showQuiz() {
+    if (quiz) { renderQuiz(); return }
+    fetch('data/quiz.json')
+      .then(function (r) { return r.json() })
+      .then(function (d) { quiz = d; loadAnswers(); renderQuiz() })
+      .catch(function () { $main.innerHTML = '<p class="loading">載不到 data/quiz.json。</p>' })
+  }
+
+  // #/quiz、#/1 或 #/1.3
   function route() {
     var raw = (location.hash || '').replace(/^#\/?/, '').trim()
+    if (raw === 'quiz') { showQuiz(); return }
     var parts = raw.split('.')
     var ch = parseInt(parts[0], 10)
     if (!ch || ch < 1 || ch > TOTAL) ch = index.chapters.length ? index.chapters[0].chapter : 1
@@ -239,6 +318,27 @@
       activeTerm = null
       Array.prototype.forEach.call($cloud.children, function (b) { b.classList.remove('on') })
       route()
+      return
+    }
+
+    // 作答：只重畫那一題與計分列，不整頁重畫（免得捲動位置跳掉）
+    var pick = e.target.closest && e.target.closest('.q-btns button')
+    if (pick && quiz) {
+      var qid = pick.dataset.q
+      var i = -1
+      quiz.questions.forEach(function (q, n) { if (q.id === qid) i = n })
+      if (i < 0) return
+      answers[qid] = pick.dataset.v === '1'
+      saveAnswers()
+      document.getElementById('qi-' + qid).innerHTML = renderQuestion(quiz.questions[i], i)
+      document.getElementById('quiz-score').textContent = scoreLine()
+      return
+    }
+
+    if (e.target.classList && e.target.classList.contains('quiz-reset')) {
+      answers = {}
+      saveAnswers()
+      renderQuiz()
     }
   })
 
