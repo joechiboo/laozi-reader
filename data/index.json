@@ -98,7 +98,8 @@
       "gist": "輪、器、室三個例子：有之以為利，無之以為用",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 12,
@@ -106,7 +107,8 @@
       "gist": "五色令人目盲；聖人為腹不為目，去彼取此",
       "status": "draft",
       "segments": 2,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 13,
@@ -114,7 +116,8 @@
       "gist": "寵辱若驚，貴大患若身；貴以身為天下，若可寄天下",
       "status": "draft",
       "segments": 4,
-      "notes": 4
+      "notes": 4,
+      "quiz": true
     },
     {
       "chapter": 14,
@@ -122,7 +125,8 @@
       "gist": "夷希微混而為一；無狀之狀，執古之道以御今之有",
       "status": "draft",
       "segments": 6,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 15,
@@ -130,7 +134,8 @@
       "gist": "古之善為士者七喻；濁以靜之徐清，保此道者不欲盈",
       "status": "draft",
       "segments": 5,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 16,
@@ -138,7 +143,8 @@
       "gist": "致虛守靜，觀萬物之復；歸根曰靜，知常曰明",
       "status": "draft",
       "segments": 5,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 17,
@@ -146,7 +152,8 @@
       "gist": "治理的四等：下知有之、親譽之、畏之、侮之；功成而百姓謂我自然",
       "status": "draft",
       "segments": 3,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 18,
@@ -154,7 +161,8 @@
       "gist": "大道廢有仁義；智慧出有大偽——某物標舉，正說明其反面已成問題",
       "status": "draft",
       "segments": 4,
-      "notes": 5
+      "notes": 5,
+      "quiz": true
     },
     {
       "chapter": 19,
@@ -162,7 +170,8 @@
       "gist": "絕聖棄智、絕仁棄義、絕巧棄利；見素抱樸，少私寡欲",
       "status": "draft",
       "segments": 4,
-      "notes": 6
+      "notes": 6,
+      "quiz": true
     },
     {
       "chapter": 20,
@@ -170,7 +179,8 @@
       "gist": "全書唯一自述：眾人熙熙，我獨泊兮；我獨異於人，而貴食母",
       "status": "draft",
       "segments": 7,
-      "notes": 7
+      "notes": 7,
+      "quiz": true
     },
     {
       "chapter": 21,
