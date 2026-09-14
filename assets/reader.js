@@ -600,6 +600,77 @@
       })
   }
 
+  // ── 全文搜尋 ──────────────────────────────
+  // 索引 154 KB，只在第一次搜尋時載；比對就是子字串比對——
+  // 中文沒有斷詞問題，355 句的規模也不需要任何索引結構。
+  var searchRows = null
+  var $q = document.getElementById('q')
+
+  function snippet(text, q, max) {
+    var i = text.indexOf(q)
+    if (i < 0) return esc(text.slice(0, max))
+    var from = Math.max(0, i - Math.floor((max - q.length) / 2))
+    var cut = text.slice(from, from + max)
+    return (from ? '…' : '') + esc(cut).split(esc(q)).join('<mark>' + esc(q) + '</mark>') +
+      (from + max < text.length ? '…' : '')
+  }
+
+  function renderSearch(q) {
+    if (!q) { $main.innerHTML = '<p class="loading">輸入關鍵字開始搜尋。</p>'; return }
+    var hits = []
+    searchRows.forEach(function (r) {
+      var where = []
+      if (r.t.indexOf(q) >= 0) where.push(['原文', r.t])
+      if (r.p.indexOf(q) >= 0) where.push(['白話', r.p])
+      ;(r.n || []).forEach(function (n) { if (n.indexOf(q) >= 0) where.push(['註解', n]) })
+      if (where.length) hits.push({ r: r, where: where })
+    })
+
+    var html = '<div class="chapter-head"><h2>搜尋「' + esc(q) + '」</h2>' +
+      '<p class="meta">' + (hits.length ? hits.length + ' 句命中' : '沒有命中') +
+      '（搜尋範圍：原文、白話、註解）</p></div>'
+
+    if (!hits.length) {
+      html += '<p class="loading">換個詞試試。受控關鍵詞另有 30 個，見左側。</p>'
+    } else {
+      html += '<ol class="search-list">' + hits.slice(0, 120).map(function (h) {
+        return '<li><a class="sr-id" href="#/' + esc(h.r.id) + '">第 ' + h.r.c + ' 章 ' + esc(h.r.id) + '</a>' +
+          h.where.map(function (w) {
+            return '<p class="sr-line"><span class="sr-tag">' + w[0] + '</span>' + snippet(w[1], q, 60) + '</p>'
+          }).join('') + '</li>'
+      }).join('') + '</ol>'
+      if (hits.length > 120) html += '<p class="loading">只列出前 120 句。</p>'
+    }
+    $main.innerHTML = html
+    Array.prototype.forEach.call($list.children, function (li) { li.classList.remove('active') })
+    window.scrollTo(0, 0)
+  }
+
+  function showSearch(q) {
+    if ($q && $q.value !== q) $q.value = q
+    if (searchRows) { renderSearch(q); return }
+    $main.innerHTML = '<p class="loading">載入搜尋索引…</p>'
+    fetch('data/search.json')
+      .then(function (r) { return r.json() })
+      .then(function (d) { searchRows = d.rows; renderSearch(q) })
+      .catch(function () { $main.innerHTML = '<p class="loading">載不到 data/search.json。</p>' })
+  }
+
+  if ($q) {
+    var timer = null
+    $q.addEventListener('input', function () {
+      clearTimeout(timer)
+      var v = $q.value.trim()
+      timer = setTimeout(function () {
+        if (!v) return
+        location.hash = '#/s/' + encodeURIComponent(v)
+      }, 250)
+    })
+    $q.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { $q.value = ''; $q.blur() }
+    })
+  }
+
   // ── 成語 ──────────────────────────────────
   var idioms = null
 
@@ -643,6 +714,7 @@
   function route() {
     var raw = (location.hash || '').replace(/^#\/?/, '').trim()
     if (raw === 'quiz') { showQuiz(); return }
+    if (raw.indexOf('s/') === 0) { showSearch(decodeURIComponent(raw.slice(2))); return }
     if (raw === 'idioms' || raw.indexOf('idioms/') === 0) {
       showIdioms(raw.indexOf('/') > 0 ? raw.split('/')[1] : null); return
     }

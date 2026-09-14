@@ -18,6 +18,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CHAPTERS = ROOT / "data" / "chapters"
 OUT = ROOT / "data" / "index.json"
+SEARCH = ROOT / "data" / "search.json"
 
 
 def main():
@@ -28,6 +29,7 @@ def main():
 
     chapters = []
     kw = defaultdict(list)   # term -> [{chapter, segments, sense?}]
+    rows = []                # 全文搜尋用：一句一筆，附該句的白話與註解
     quiz_dir = ROOT / "data" / "quiz"
 
     for f in files:
@@ -44,6 +46,18 @@ def main():
         if (quiz_dir / f"{d['chapter']:03d}.json").exists():
             entry["quiz"] = True
         chapters.append(entry)
+        notes_by_ref = defaultdict(list)
+        for n in d["notes"]:
+            notes_by_ref[n["ref"]].append(
+                (n.get("term", "") + " " + n["text"]).strip())
+        for seg in d["segments"]:
+            row = {"id": seg["id"], "c": d["chapter"], "t": seg["text"], "p": seg["plain"]}
+            if seg.get("alt"):
+                row["p"] += " " + seg["alt"]
+            if notes_by_ref.get(seg["id"]):
+                row["n"] = notes_by_ref[seg["id"]]
+            rows.append(row)
+
         for k in d["keywords"]:
             entry = {"chapter": d["chapter"], "segments": k["refs"]}
             if k.get("sense"):
@@ -58,6 +72,12 @@ def main():
         key=lambda k: (-k["chapters"], k["term"]),
     )
 
+    SEARCH.write_text(
+        json.dumps({"generated": date.today().isoformat(), "rows": rows},
+                   ensure_ascii=False, separators=(",", ":")) + "\n",
+        encoding="utf-8",
+    )
+
     OUT.write_text(
         json.dumps({
             "generated": date.today().isoformat(),
@@ -68,7 +88,9 @@ def main():
         encoding="utf-8",
     )
     withquiz = sum(1 for c in chapters if c.get("quiz"))
+    kb = SEARCH.stat().st_size // 1024
     print(f"data/index.json：{len(chapters)} 章、{len(keywords)} 個關鍵詞、{withquiz} 章有小考")
+    print(f"data/search.json：{len(rows)} 句（含白話與註解），{kb} KB")
     return 0
 
 
