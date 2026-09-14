@@ -24,6 +24,8 @@ MVP 五章（**1、8、42、60、81**）鋪完後，照互見一批批往外接�
 | 索引生成 | ✅ `tools/build_index.py` |
 | 呈現層 | ✅ `index.html`（線上：https://joechiboo.github.io/laozi-reader/） |
 
+待辦與已決定不做的事，見 [TODO.md](TODO.md)。
+
 ## 底本與版權界線
 
 - **原文**：王弼本，公版。
