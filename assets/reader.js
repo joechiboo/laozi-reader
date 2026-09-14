@@ -50,6 +50,52 @@
 
   try { setCompact(localStorage.getItem(COMPACT_KEY) === '1') } catch (e) { setCompact(false) }
 
+  // 讀過標記：純手動，標了才算；只存在這台瀏覽器
+  var READ_KEY = 'laozi-reader:read'
+  var readSet = {}
+
+  function loadRead() {
+    try {
+      var raw = JSON.parse(localStorage.getItem(READ_KEY) || '[]')
+      readSet = {}
+      if (Array.isArray(raw)) raw.forEach(function (n) { readSet[n] = true })
+    } catch (e) { readSet = {} }
+  }
+
+  function saveRead() {
+    var list = Object.keys(readSet).filter(function (k) { return readSet[k] })
+      .map(Number).sort(function (a, b) { return a - b })
+    try { localStorage.setItem(READ_KEY, JSON.stringify(list)) } catch (e) { /* 無痕視窗等 */ }
+  }
+
+  function readCount() {
+    return Object.keys(readSet).filter(function (k) { return readSet[k] }).length
+  }
+
+  function renderProgress() {
+    var n = readCount()
+    $progress.textContent = index.chapters.length + ' / ' + TOTAL + ' 章已有資料' +
+      (n ? '　已讀 ' + n + ' 章' : '')
+  }
+
+  function readButton(ch) {
+    var on = !!readSet[ch]
+    return '<button type="button" class="read-toggle' + (on ? ' on' : '') + '" ' +
+      'data-read="' + ch + '" aria-pressed="' + (on ? 'true' : 'false') + '">' +
+      (on ? '✓ 已讀' : '標記讀過') + '</button>'
+  }
+
+  // 標記後只動那顆鈕、側欄該格與進度列，不重畫整章
+  function toggleRead(ch) {
+    readSet[ch] = !readSet[ch]
+    saveRead()
+    var btn = $main.querySelector('.read-toggle[data-read="' + ch + '"]')
+    if (btn) btn.outerHTML = readButton(ch)
+    var li = $list.querySelector('li[data-ch="' + ch + '"]')
+    if (li) li.classList.toggle('read', !!readSet[ch])
+    renderProgress()
+  }
+
   var ENTITIES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }
   function esc(s) {
     return String(s).replace(/[&<>"]/g, function (c) { return ENTITIES[c] })
@@ -102,11 +148,12 @@
         head = '<li class="part">' + esc(c.part) + '</li>'
         lastPart = c.part
       }
-      return head + '<li data-ch="' + c.chapter + '">' +
+      return head + '<li data-ch="' + c.chapter + '"' +
+        (readSet[c.chapter] ? ' class="read"' : '') + '>' +
         '<a href="#/' + c.chapter + '" title="' + esc(c.gist) + '">' + c.chapter + '</a></li>'
     }).join('')
     $list.innerHTML = html
-    $progress.textContent = index.chapters.length + ' / ' + TOTAL + ' 章已有資料'
+    renderProgress()
 
     $cloud.innerHTML = index.keywords.map(function (k) {
       var hits = k.refs.reduce(function (n, r) { return n + r.segments.length }, 0)
@@ -156,7 +203,9 @@
 
     html += renderNav(d.chapter)
     html += '<div class="chapter-head">' +
+      '<div class="head-row">' +
       '<h2>第 ' + d.chapter + ' 章' + (draft ? '<span class="badge">白話待校稿</span>' : '') + '</h2>' +
+      readButton(d.chapter) + '</div>' +
       '<p class="meta">' + esc(d.part) + ' ／ ' + esc(d.meta.base || '王弼本') +
       ' ／ ' + d.segments.length + ' 句 ' + d.notes.length + ' 註' +
       (d.gist ? ' ／ ' + esc(d.gist) : '') + '</p></div>'
@@ -321,6 +370,9 @@
       return
     }
 
+    var rd = e.target.closest && e.target.closest('.read-toggle')
+    if (rd) { toggleRead(Number(rd.dataset.read)); return }
+
     // 作答：只重畫那一題與計分列，不整頁重畫（免得捲動位置跳掉）
     var pick = e.target.closest && e.target.closest('.q-btns button')
     if (pick && quiz) {
@@ -361,6 +413,7 @@
     .then(function (r) { return r.json() })
     .then(function (d) {
       index = d
+      loadRead()
       renderSidebar()
       route()
     })

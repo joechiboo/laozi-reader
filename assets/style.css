@@ -151,6 +151,8 @@ body.lean .full-text { font-size: 1.45rem; line-height: 2; margin-bottom: 2.6rem
   line-height: 1.3;
 }
 .chapter-list a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.chapter-list li.read a { background: var(--accent-soft); border-color: var(--accent-soft); }
+.chapter-list li.read a:hover { border-color: var(--accent); }
 .chapter-list li.active a { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 
 .keyword-cloud { display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -180,6 +182,27 @@ body.lean .full-text { font-size: 1.45rem; line-height: 2; margin-bottom: 2.6rem
 .chapnav .cur { letter-spacing: .15em; }
 .chapnav + .chapter-head { margin-top: 0; }
 .readthrough + .chapnav, .todo-box + .chapnav { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+
+.head-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.read-toggle {
+  flex: none;
+  border: 1px solid var(--rule);
+  background: none;
+  color: var(--ink-2);
+  font-family: inherit;
+  font-size: .8rem;
+  letter-spacing: .08em;
+  padding: .25rem .8rem;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.read-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.read-toggle.on { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 
 .chapter-head { border-bottom: 2px solid var(--ink); padding-bottom: .8rem; margin-bottom: 1.6rem; }
 .chapter-head h2 { margin: 0; font-size: 1.9rem; letter-spacing: .1em; }
