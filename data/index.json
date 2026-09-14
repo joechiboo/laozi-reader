@@ -1,6 +1,6 @@
 {
   "generated": "2026-09-14",
-  "total": 30,
+  "total": 34,
   "chapters": [
     {
       "chapter": 1,
@@ -51,6 +51,14 @@
       "notes": 8
     },
     {
+      "chapter": 9,
+      "part": "道經",
+      "gist": "持盈揣銳不可長保；功遂身退，天之道",
+      "status": "draft",
+      "segments": 4,
+      "notes": 5
+    },
+    {
       "chapter": 11,
       "part": "道經",
       "gist": "輪、器、室三個例子：有之以為利，無之以為用",
@@ -88,6 +96,14 @@
       "gist": "有物混成，先天地生；強名曰道，道法自然",
       "status": "draft",
       "segments": 6,
+      "notes": 6
+    },
+    {
+      "chapter": 29,
+      "part": "道經",
+      "gist": "天下神器不可為；為者敗之，執者失之；聖人去甚去奢去泰",
+      "status": "draft",
+      "segments": 5,
       "notes": 6
     },
     {
@@ -155,6 +171,14 @@
       "notes": 5
     },
     {
+      "chapter": 45,
+      "part": "德經",
+      "gist": "大成若缺，大盈若沖，大巧若拙；清靜為天下正",
+      "status": "draft",
+      "segments": 4,
+      "notes": 5
+    },
+    {
       "chapter": 48,
       "part": "德經",
       "gist": "為學日益，為道日損；損到無為，取天下常以無事",
@@ -219,6 +243,14 @@
       "notes": 5
     },
     {
+      "chapter": 67,
+      "part": "德經",
+      "gist": "三寶：慈、儉、不敢為天下先；慈以戰則勝，以守則固",
+      "status": "draft",
+      "segments": 5,
+      "notes": 5
+    },
+    {
       "chapter": 76,
       "part": "德經",
       "gist": "柔弱者生之徒，堅強者死之徒；強大處下，柔弱處上",
@@ -246,7 +278,7 @@
   "keywords": [
     {
       "term": "天下",
-      "chapters": 15,
+      "chapters": 18,
       "refs": [
         {
           "chapter": 2,
@@ -265,6 +297,13 @@
           "chapter": 25,
           "segments": [
             "25.2"
+          ]
+        },
+        {
+          "chapter": 29,
+          "segments": [
+            "29.1",
+            "29.2"
           ]
         },
         {
@@ -297,6 +336,12 @@
           "segments": [
             "43.1",
             "43.3"
+          ]
+        },
+        {
+          "chapter": 45,
+          "segments": [
+            "45.4"
           ]
         },
         {
@@ -338,6 +383,14 @@
           ]
         },
         {
+          "chapter": 67,
+          "segments": [
+            "67.1",
+            "67.2",
+            "67.3"
+          ]
+        },
+        {
           "chapter": 78,
           "segments": [
             "78.1",
@@ -349,7 +402,7 @@
     },
     {
       "term": "道",
-      "chapters": 15,
+      "chapters": 17,
       "refs": [
         {
           "chapter": 1,
@@ -371,6 +424,13 @@
             "8.2"
           ],
           "sense": "以水為喻所指向的道"
+        },
+        {
+          "chapter": 9,
+          "segments": [
+            "9.4"
+          ],
+          "sense": "天之道，與聖人之道對舉"
         },
         {
           "chapter": 16,
@@ -455,6 +515,13 @@
             "60.2"
           ],
           "sense": "治理所依循的道"
+        },
+        {
+          "chapter": 67,
+          "segments": [
+            "67.1"
+          ],
+          "sense": "大而無可比擬"
         },
         {
           "chapter": 81,
@@ -559,7 +626,7 @@
     },
     {
       "term": "聖人",
-      "chapters": 10,
+      "chapters": 11,
       "refs": [
         {
           "chapter": 2,
@@ -577,6 +644,12 @@
           "chapter": 22,
           "segments": [
             "22.2"
+          ]
+        },
+        {
+          "chapter": 29,
+          "segments": [
+            "29.5"
           ]
         },
         {
@@ -762,6 +835,48 @@
           "chapter": 32,
           "segments": [
             "32.3"
+          ]
+        }
+      ]
+    },
+    {
+      "term": "強",
+      "chapters": 5,
+      "refs": [
+        {
+          "chapter": 29,
+          "segments": [
+            "29.4"
+          ]
+        },
+        {
+          "chapter": 33,
+          "segments": [
+            "33.2",
+            "33.3"
+          ],
+          "sense": "此處是褒義的自勝，與 42、76 章貶義的逞強相反"
+        },
+        {
+          "chapter": 42,
+          "segments": [
+            "42.6"
+          ]
+        },
+        {
+          "chapter": 76,
+          "segments": [
+            "76.1",
+            "76.3",
+            "76.4",
+            "76.5"
+          ]
+        },
+        {
+          "chapter": 78,
+          "segments": [
+            "78.1",
+            "78.2"
           ]
         }
       ]
@@ -1036,42 +1151,6 @@
           "chapter": 81,
           "segments": [
             "81.2"
-          ]
-        }
-      ]
-    },
-    {
-      "term": "強",
-      "chapters": 4,
-      "refs": [
-        {
-          "chapter": 33,
-          "segments": [
-            "33.2",
-            "33.3"
-          ],
-          "sense": "此處是褒義的自勝，與 42、76 章貶義的逞強相反"
-        },
-        {
-          "chapter": 42,
-          "segments": [
-            "42.6"
-          ]
-        },
-        {
-          "chapter": 76,
-          "segments": [
-            "76.1",
-            "76.3",
-            "76.4",
-            "76.5"
-          ]
-        },
-        {
-          "chapter": 78,
-          "segments": [
-            "78.1",
-            "78.2"
           ]
         }
       ]
