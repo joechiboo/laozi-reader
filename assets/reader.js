@@ -169,11 +169,66 @@
     return String(s).replace(/[&<>"]/g, function (c) { return ENTITIES[c] })
   }
 
-  // 把句子裡的關鍵詞標出來（只在從關鍵詞跳過來時用）
+  // 難字讀音：原文裡這些字加虛線底線，點一下看讀音（data/readings.json）
+  var readings = {}
+
+  // 只處理標籤外的文字，免得把 <mark> 裡的屬性也換掉
+  function annotate(html) {
+    if (!html) return html
+    var out = ''
+    var i = 0
+    while (i < html.length) {
+      var lt = html.indexOf('<', i)
+      if (lt < 0) { out += ruby(html.slice(i)); break }
+      out += ruby(html.slice(i, lt))
+      var gt = html.indexOf('>', lt)
+      if (gt < 0) { out += html.slice(lt); break }
+      out += html.slice(lt, gt + 1)
+      i = gt + 1
+    }
+    return out
+  }
+
+  function ruby(text) {
+    var out = ''
+    for (var i = 0; i < text.length; i++) {
+      var c = text.charAt(i)
+      var r = readings[c]
+      out += r ? '<span class="ru" data-ru="' + c + '" tabindex="0">' + c + '</span>' : c
+    }
+    return out
+  }
+
+  // 把句子裡的關鍵詞標出來（只在從關鍵詞跳過來時用），再加上難字底線
   function mark(text, term) {
     var safe = esc(text)
-    if (!term) return safe
-    return safe.split(esc(term)).join('<mark>' + esc(term) + '</mark>')
+    if (term) safe = safe.split(esc(term)).join('<mark>' + esc(term) + '</mark>')
+    return annotate(safe)
+  }
+
+  function showReading(c) {
+    var r = readings[c]
+    if (!r) return
+    var bar = document.getElementById('reading-bar')
+    if (!bar) {
+      bar = document.createElement('div')
+      bar.id = 'reading-bar'
+      bar.addEventListener('click', function (e) {
+        if (e.target.classList.contains('rb-close')) hideReading()
+      })
+      document.body.appendChild(bar)
+    }
+    // 只顯示注音；拼音仍留在 readings.json 裡備用，但不上畫面
+    bar.innerHTML = '<span class="rb-char">' + esc(c) + '</span>' +
+      '<span class="rb-zhuyin">' + esc(r.zhuyin) + '</span>' +
+      '<span class="rb-gloss">' + esc(r.gloss) + '</span>' +
+      '<button type="button" class="rb-close" aria-label="關閉">×</button>'
+    bar.classList.add('on')
+  }
+
+  function hideReading() {
+    var bar = document.getElementById('reading-bar')
+    if (bar) bar.classList.remove('on')
   }
 
   function pad(n) { return ('00' + n).slice(-3) }
@@ -600,6 +655,8 @@
       return
     }
 
+    var ru = e.target.closest && e.target.closest('.ru')
+    if (ru) { showReading(ru.dataset.ru); return }
     var rd = e.target.closest && e.target.closest('.read-toggle')
     if (rd) { toggleRead(Number(rd.dataset.read)); return }
 
@@ -633,6 +690,10 @@
     if (!index || e.altKey || e.ctrlKey || e.metaKey) return
     var tag = (e.target && e.target.tagName) || ''
     if (tag === 'INPUT' || tag === 'TEXTAREA') return
+    if (e.key === 'Escape') { hideReading(); return }
+    if (e.key === 'Enter' && e.target && e.target.classList && e.target.classList.contains('ru')) {
+      showReading(e.target.dataset.ru); return
+    }
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
     var ch = parseInt((location.hash || '').replace(/^#\/?/, ''), 10)
     if (!ch) return
@@ -641,7 +702,11 @@
     if (to) location.hash = '#/' + to
   })
 
-  fetch('data/index.json')
+  fetch('data/readings.json')
+    .then(function (r) { return r.json() })
+    .then(function (d) { readings = d.readings || {} })
+    .catch(function () { readings = {} })
+    .then(function () { return fetch('data/index.json') })
     .then(function (r) { return r.json() })
     .then(function (d) {
       index = d

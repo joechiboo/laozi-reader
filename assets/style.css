@@ -413,6 +413,51 @@ body.lean .chapquiz { display: none; }
 /* 精簡模式是為了讀原文，測驗頁不受影響 */
 body.lean .quiz .seg { display: block; }
 
+/* ── 難字讀音 ──────────────────────────── */
+.ru {
+  border-bottom: 1px dotted var(--accent);
+  cursor: help;
+}
+.ru:hover, .ru:focus { color: var(--accent); outline: none; }
+
+#reading-bar {
+  position: fixed;
+  left: 50%;
+  bottom: -5rem;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
+  max-width: calc(100vw - 2rem);
+  padding: .6rem 1rem .6rem 1.2rem;
+  background: var(--paper-2);
+  border: 1px solid var(--accent);
+  border-radius: 3px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+  font-size: .9rem;
+  transition: bottom .18s ease-out;
+  z-index: 10;
+}
+#reading-bar.on { bottom: 1.2rem; }
+#reading-bar .rb-char { font-size: 1.5rem; color: var(--accent); }
+#reading-bar .rb-zhuyin { letter-spacing: .08em; font-size: 1.05rem; }
+#reading-bar .rb-gloss { color: var(--ink-2); font-size: .85rem; }
+#reading-bar .rb-close {
+  border: none;
+  background: none;
+  color: var(--ink-2);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 0 0 .4rem;
+}
+#reading-bar .rb-close:hover { color: var(--accent); }
+
+@media (max-width: 560px) {
+  #reading-bar { flex-wrap: wrap; gap: .3rem .7rem; }
+  #reading-bar .rb-gloss { flex-basis: 100%; }
+}
+
 .loading { color: var(--ink-2); }
 
 footer {

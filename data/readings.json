@@ -1,0 +1,305 @@
+{
+  "note": "原文裡難唸的字。只收讀音與上下文無關的字——像「數（shuò）」「施（yí）」「厭（yā）」「見（現）」這種同字異讀的不收，標了會在別處標錯，交給註解處理。",
+  "readings": {
+    "儼": {
+      "zhuyin": "ㄧㄢˇ",
+      "pinyin": "yǎn",
+      "gloss": "端整"
+    },
+    "儽": {
+      "zhuyin": "ㄌㄟˊ",
+      "pinyin": "léi",
+      "gloss": "疲憊的樣子"
+    },
+    "兌": {
+      "zhuyin": "ㄉㄨㄟˋ",
+      "pinyin": "duì",
+      "gloss": "孔竅"
+    },
+    "兕": {
+      "zhuyin": "ㄙˋ",
+      "pinyin": "sì",
+      "gloss": "犀牛一類的猛獸"
+    },
+    "劌": {
+      "zhuyin": "ㄍㄨㄟˋ",
+      "pinyin": "guì",
+      "gloss": "割傷"
+    },
+    "嗄": {
+      "zhuyin": "ㄕㄚˋ",
+      "pinyin": "shà",
+      "gloss": "嗓子啞"
+    },
+    "嗇": {
+      "zhuyin": "ㄙㄜˋ",
+      "pinyin": "sè",
+      "gloss": "吝惜、省著用"
+    },
+    "垢": {
+      "zhuyin": "ㄍㄡˋ",
+      "pinyin": "gòu",
+      "gloss": "污辱"
+    },
+    "埏": {
+      "zhuyin": "ㄕㄢ",
+      "pinyin": "shān",
+      "gloss": "和土、揉陶土"
+    },
+    "埴": {
+      "zhuyin": "ㄓˊ",
+      "pinyin": "zhí",
+      "gloss": "黏土"
+    },
+    "夸": {
+      "zhuyin": "ㄎㄨㄚ",
+      "pinyin": "kuā",
+      "gloss": "誇大"
+    },
+    "徼": {
+      "zhuyin": "ㄐㄧㄠˋ",
+      "pinyin": "jiào",
+      "gloss": "邊界、歸終"
+    },
+    "忒": {
+      "zhuyin": "ㄊㄜˋ",
+      "pinyin": "tè",
+      "gloss": "差錯"
+    },
+    "恍": {
+      "zhuyin": "ㄏㄨㄤˇ",
+      "pinyin": "huǎng",
+      "gloss": "模糊不清"
+    },
+    "惚": {
+      "zhuyin": "ㄏㄨ",
+      "pinyin": "hū",
+      "gloss": "若有若無"
+    },
+    "攘": {
+      "zhuyin": "ㄖㄤˇ",
+      "pinyin": "rǎng",
+      "gloss": "捋起（袖子）"
+    },
+    "攫": {
+      "zhuyin": "ㄐㄩㄝˊ",
+      "pinyin": "jué",
+      "gloss": "抓取"
+    },
+    "斲": {
+      "zhuyin": "ㄓㄨㄛˊ",
+      "pinyin": "zhuó",
+      "gloss": "砍削"
+    },
+    "曠": {
+      "zhuyin": "ㄎㄨㄤˋ",
+      "pinyin": "kuàng",
+      "gloss": "空曠"
+    },
+    "柢": {
+      "zhuyin": "ㄉㄧˇ",
+      "pinyin": "dǐ",
+      "gloss": "樹根"
+    },
+    "棘": {
+      "zhuyin": "ㄐㄧˊ",
+      "pinyin": "jí",
+      "gloss": "有刺的灌木"
+    },
+    "楗": {
+      "zhuyin": "ㄐㄧㄢˋ",
+      "pinyin": "jiàn",
+      "gloss": "門閂"
+    },
+    "槁": {
+      "zhuyin": "ㄍㄠˇ",
+      "pinyin": "gǎo",
+      "gloss": "枯乾"
+    },
+    "橐": {
+      "zhuyin": "ㄊㄨㄛˊ",
+      "pinyin": "tuó",
+      "gloss": "風箱外面的皮囊"
+    },
+    "歔": {
+      "zhuyin": "ㄒㄩ",
+      "pinyin": "xū",
+      "gloss": "緩緩呼氣"
+    },
+    "歙": {
+      "zhuyin": "ㄒㄧ",
+      "pinyin": "xī",
+      "gloss": "收合"
+    },
+    "泮": {
+      "zhuyin": "ㄆㄢˋ",
+      "pinyin": "pàn",
+      "gloss": "分解、消融"
+    },
+    "渙": {
+      "zhuyin": "ㄏㄨㄢˋ",
+      "pinyin": "huàn",
+      "gloss": "渙散、消解"
+    },
+    "澹": {
+      "zhuyin": "ㄉㄢˋ",
+      "pinyin": "dàn",
+      "gloss": "恬淡"
+    },
+    "燿": {
+      "zhuyin": "ㄧㄠˋ",
+      "pinyin": "yào",
+      "gloss": "照耀，此指刺眼"
+    },
+    "牖": {
+      "zhuyin": "ㄧㄡˇ",
+      "pinyin": "yǒu",
+      "gloss": "窗"
+    },
+    "牝": {
+      "zhuyin": "ㄆㄧㄣˋ",
+      "pinyin": "pìn",
+      "gloss": "雌性的鳥獸"
+    },
+    "牡": {
+      "zhuyin": "ㄇㄨˇ",
+      "pinyin": "mǔ",
+      "gloss": "雄性的鳥獸"
+    },
+    "狎": {
+      "zhuyin": "ㄒㄧㄚˊ",
+      "pinyin": "xiá",
+      "gloss": "逼迫、輕慢"
+    },
+    "珞": {
+      "zhuyin": "ㄌㄨㄛˋ",
+      "pinyin": "luò",
+      "gloss": "石頭堅硬尋常的樣子"
+    },
+    "琭": {
+      "zhuyin": "ㄌㄨˋ",
+      "pinyin": "lù",
+      "gloss": "玉溫潤稀有的樣子"
+    },
+    "甫": {
+      "zhuyin": "ㄈㄨˇ",
+      "pinyin": "fǔ",
+      "gloss": "開始"
+    },
+    "畋": {
+      "zhuyin": "ㄊㄧㄢˊ",
+      "pinyin": "tián",
+      "gloss": "打獵"
+    },
+    "皦": {
+      "zhuyin": "ㄐㄧㄠˇ",
+      "pinyin": "jiǎo",
+      "gloss": "明亮"
+    },
+    "稷": {
+      "zhuyin": "ㄐㄧˋ",
+      "pinyin": "jì",
+      "gloss": "穀神，社稷之稷"
+    },
+    "窈": {
+      "zhuyin": "ㄧㄠˇ",
+      "pinyin": "yǎo",
+      "gloss": "幽深"
+    },
+    "篤": {
+      "zhuyin": "ㄉㄨˇ",
+      "pinyin": "dǔ",
+      "gloss": "厚實、切實"
+    },
+    "籥": {
+      "zhuyin": "ㄩㄝˋ",
+      "pinyin": "yuè",
+      "gloss": "風箱送風的管"
+    },
+    "繟": {
+      "zhuyin": "ㄔㄢˇ",
+      "pinyin": "chǎn",
+      "gloss": "寬緩從容"
+    },
+    "纇": {
+      "zhuyin": "ㄌㄟˋ",
+      "pinyin": "lèi",
+      "gloss": "絲上的疙瘩，引申不平"
+    },
+    "羸": {
+      "zhuyin": "ㄌㄟˊ",
+      "pinyin": "léi",
+      "gloss": "瘦弱"
+    },
+    "芻": {
+      "zhuyin": "ㄔㄨˊ",
+      "pinyin": "chú",
+      "gloss": "餵牲口的草"
+    },
+    "蒞": {
+      "zhuyin": "ㄌㄧˋ",
+      "pinyin": "lì",
+      "gloss": "臨、面對"
+    },
+    "螫": {
+      "zhuyin": "ㄕˋ",
+      "pinyin": "shì",
+      "gloss": "毒蟲刺人"
+    },
+    "謫": {
+      "zhuyin": "ㄓㄜˊ",
+      "pinyin": "zhé",
+      "gloss": "責備，引申瑕疵"
+    },
+    "谿": {
+      "zhuyin": "ㄒㄧ",
+      "pinyin": "xī",
+      "gloss": "同「溪」"
+    },
+    "蹶": {
+      "zhuyin": "ㄐㄩㄝˋ",
+      "pinyin": "jué",
+      "gloss": "顛仆、倒下"
+    },
+    "輜": {
+      "zhuyin": "ㄗ",
+      "pinyin": "zī",
+      "gloss": "載重的車"
+    },
+    "輻": {
+      "zhuyin": "ㄈㄨˊ",
+      "pinyin": "fú",
+      "gloss": "車輪的條"
+    },
+    "輿": {
+      "zhuyin": "ㄩˊ",
+      "pinyin": "yú",
+      "gloss": "車"
+    },
+    "轂": {
+      "zhuyin": "ㄍㄨˇ",
+      "pinyin": "gǔ",
+      "gloss": "車輪中心的圓木"
+    },
+    "轍": {
+      "zhuyin": "ㄔㄜˋ",
+      "pinyin": "chè",
+      "gloss": "車輪的痕跡"
+    },
+    "闚": {
+      "zhuyin": "ㄎㄨㄟ",
+      "pinyin": "kuī",
+      "gloss": "同「窺」，偷看"
+    },
+    "隳": {
+      "zhuyin": "ㄏㄨㄟ",
+      "pinyin": "huī",
+      "gloss": "毀壞"
+    },
+    "飂": {
+      "zhuyin": "ㄌㄧㄡˋ",
+      "pinyin": "liù",
+      "gloss": "風飄動的樣子"
+    }
+  }
+}

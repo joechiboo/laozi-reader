@@ -153,6 +153,25 @@ def check_chapter_quiz(all_segs):
     return errs
 
 
+def check_readings(seg_text):
+    """難字讀音表：收的字必須真的出現在原文裡，欄位要齊。"""
+    path = ROOT / "data" / "readings.json"
+    if not path.exists():
+        return []
+    errs = []
+    body = "".join(seg_text.values())
+    d = json.loads(path.read_text(encoding="utf-8"))
+    for c, r in d.get("readings", {}).items():
+        if len(c) != 1:
+            errs.append(f"readings：「{c}」不是單字")
+        if c not in body:
+            errs.append(f"readings：「{c}」原文裡沒出現，是多餘的條目")
+        for field in ("zhuyin", "pinyin", "gloss"):
+            if not r.get(field):
+                errs.append(f"readings：「{c}」缺少 {field}")
+    return errs
+
+
 def main():
     schema_check = None
     try:
@@ -194,14 +213,14 @@ def main():
             print(f"[ OK ] {f.name}")
     print(f"\n{len(files)} 章，{bad} 章有問題")
 
-    quiz_errs = check_quiz(all_segs) + check_chapter_quiz(all_segs)
+    quiz_errs = check_quiz(all_segs) + check_chapter_quiz(all_segs) + check_readings(seg_text)
     if quiz_errs:
         bad += 1
         print("\n[FAIL] 題庫")
         for e in quiz_errs:
             print(f"  - {e}")
     else:
-        print("[ OK ] 題庫（綜合測驗＋本章小考）")
+        print("[ OK ] 題庫（綜合測驗＋本章小考）與難字讀音表")
     if pending:
         print("\n互見錨點指向尚未建立的章（不算錯，那幾章建好後會自動開始檢查）：")
         for line in pending:
